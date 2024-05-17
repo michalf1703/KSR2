@@ -13,7 +13,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.2</junit.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -50,12 +49,18 @@
         <dependency>
             <groupId>org.apache.opennlp</groupId>
             <artifactId>opennlp-tools</artifactId>
-            <version>1.9.3</version> <!-- Aktualna wersja -->
+            <version>1.9.3</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.surefire</groupId>
             <artifactId>surefire-booter</artifactId>
             <version>2.21.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.32</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

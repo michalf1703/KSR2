@@ -6,6 +6,7 @@ module ksr.ksrproject {
     requires java.desktop;
     requires org.jfree.jfreechart;
     requires javafx.graphics;
+    requires lombok;
 
 
     opens ksr2.ksrproject2 to javafx.fxml;
