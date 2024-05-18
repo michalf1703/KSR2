@@ -8,11 +8,11 @@ import lombok.ToString;
 @Getter
 @EqualsAndHashCode
 @ToString
-public class ContinousSet implements ClassicSet{
+public class ContinuousSet implements ClassicSet{
     private final double startOfUniverseOFDiscourse;
     private final double endOfUniverseOFDiscourse;
 
-    public ContinousSet(double startOfUniverseOFDiscourse, double endOfUniverseOFDiscourse) {
+    public ContinuousSet(double startOfUniverseOFDiscourse, double endOfUniverseOFDiscourse) {
         if (startOfUniverseOFDiscourse > endOfUniverseOFDiscourse)
             throw new IllegalArgumentException("Start of universe of discourse must be less than end of universe of discourse");
         this.startOfUniverseOFDiscourse = startOfUniverseOFDiscourse;
@@ -30,23 +30,23 @@ public class ContinousSet implements ClassicSet{
     }
 
     //dopełnienie zbioru
-    public ContinousSet complement() {
-        return new ContinousSet(endOfUniverseOFDiscourse, startOfUniverseOFDiscourse);
+    public ContinuousSet complement() {
+        return new ContinuousSet(endOfUniverseOFDiscourse, startOfUniverseOFDiscourse);
     }
 
     //cześć wspólna zbiorów
-    public ContinousSet intersection(ContinousSet other) {
+    public ContinuousSet intersection(ContinuousSet other) {
         if (startOfUniverseOFDiscourse > other.endOfUniverseOFDiscourse || endOfUniverseOFDiscourse < other.startOfUniverseOFDiscourse)
             throw new IllegalArgumentException("Sets do not intersect");
-        return new ContinousSet(Math.max(startOfUniverseOFDiscourse, other.startOfUniverseOFDiscourse),
+        return new ContinuousSet(Math.max(startOfUniverseOFDiscourse, other.startOfUniverseOFDiscourse),
                 Math.min(endOfUniverseOFDiscourse, other.endOfUniverseOFDiscourse));
     }
 
     //suma zbiorów
-    public ContinousSet union(ContinousSet other) {
+    public ContinuousSet union(ContinuousSet other) {
         if (startOfUniverseOFDiscourse > other.endOfUniverseOFDiscourse || endOfUniverseOFDiscourse < other.startOfUniverseOFDiscourse)
             throw new IllegalArgumentException("Sets do not intersect");
-        return new ContinousSet(Math.min(startOfUniverseOFDiscourse, other.startOfUniverseOFDiscourse),
+        return new ContinuousSet(Math.min(startOfUniverseOFDiscourse, other.startOfUniverseOFDiscourse),
                 Math.max(endOfUniverseOFDiscourse, other.endOfUniverseOFDiscourse));
     }
 

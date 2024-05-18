@@ -31,7 +31,7 @@ public class GaussianFunction implements MembershipFunction{
 
     @Override
     public double getArea() {
-        int numSteps = 1000; 
+        int numSteps = 1000;
         double stepSize = (rightLimit - leftLimit) / numSteps;
         double area = 0.0;
 
