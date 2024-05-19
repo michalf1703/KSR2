@@ -13,16 +13,16 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     private final MeasureWeight measureWeight;
     private final Quantifier quantifier;
     private final List<Label> summarizers;
-    private final List<PowerliftingResultDetalis> detalis;
+    private final List<PowerliftingResultDetalis> subject;
 
-    public FirstFormSingleSubjectSummary(MeasureWeight measureWeight, Quantifier quantifier, List<Label> summarizers, List<PowerliftingResultDetalis> detalis) {
+    public FirstFormSingleSubjectSummary(MeasureWeight measureWeight, Quantifier quantifier, List<Label> summarizers, List<PowerliftingResultDetalis> subject) {
         this.measureWeight = measureWeight;
         this.quantifier = quantifier;
         this.summarizers = summarizers;
-        this.detalis = detalis;
+        this.subject = subject;
     }
     @Override
-    public double getGoodnessOfSummary() {
+    public double getOptimalSummary() {
         Map<String, Double> measures = calculateMeasures();
         return measures.entrySet().stream().mapToDouble(e -> e.getValue() * measureWeight.getWeights().get(e.getKey())).sum();
     }
@@ -87,7 +87,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
                 "measureWeight=" + measureWeight +
                 ", quantifier=" + quantifier +
                 ", summarizers=" + summarizers +
-                ", detalis=" + detalis +
+                ", detalis=" + subject +
                 '}';
     }
 

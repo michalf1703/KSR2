@@ -13,19 +13,19 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     private final Quantifier quantifier;
     private final List<Label> qualifiers;
     private final List<Label> summarizers;
-    private final List<PowerliftingResultDetalis> detalis;
+    private final List<PowerliftingResultDetalis> subject;
 
 
-    public SecondFormSingleSubjectSummary(MeasureWeight measureWeight, Quantifier quantifier, List<Label> qualifiers, List<Label> summarizers, List<PowerliftingResultDetalis> detalis) {
+    public SecondFormSingleSubjectSummary(MeasureWeight measureWeight, Quantifier quantifier, List<Label> qualifiers, List<Label> summarizers, List<PowerliftingResultDetalis> subject) {
         this.measureWeight = measureWeight;
         this.quantifier = quantifier;
         this.qualifiers = qualifiers;
         this.summarizers = summarizers;
-        this.detalis = detalis;
+        this.subject = subject;
     }
 
     @Override
-    public double getGoodnessOfSummary() {
+    public double getOptimalSummary() {
         return 0;
     }
 
@@ -82,7 +82,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
                 ", quantifier=" + quantifier +
                 ", qualifiers=" + qualifiers +
                 ", summarizers=" + summarizers +
-                ", detalis=" + detalis +
+                ", detalis=" + subject +
                 '}';
     }
 }

@@ -12,15 +12,15 @@ public class ThirdFormMultiSubjectSummary implements MultiSubjectSummary {
     private final Quantifier quantifier;
     private final List<Label> summarizers;
     private final List<Label> qualifiers;
-    private final List<PowerliftingResultDetalis> detalis1;
-    private final List<PowerliftingResultDetalis> detalis2;
+    private final List<PowerliftingResultDetalis> subject1;
+    private final List<PowerliftingResultDetalis> subject2;
 
-    public ThirdFormMultiSubjectSummary(Quantifier quantifier, List<Label> summarizers, List<Label> qualifiers, List<PowerliftingResultDetalis> detalis1, List<PowerliftingResultDetalis> detalis2) {
+    public ThirdFormMultiSubjectSummary(Quantifier quantifier, List<Label> summarizers, List<Label> qualifiers, List<PowerliftingResultDetalis> subject1, List<PowerliftingResultDetalis> subject2) {
         this.quantifier = quantifier;
         this.summarizers = summarizers;
         this.qualifiers = qualifiers;
-        this.detalis1 = detalis1;
-        this.detalis2 = detalis2;
+        this.subject1 = subject1;
+        this.subject2 = subject2;
     }
 
     @Override
@@ -34,8 +34,8 @@ public class ThirdFormMultiSubjectSummary implements MultiSubjectSummary {
                 "quantifier=" + quantifier +
                 ", summarizers=" + summarizers +
                 ", qualifiers=" + qualifiers +
-                ", detalis1=" + detalis1 +
-                ", detalis2=" + detalis2 +
+                ", detalis1=" + subject1 +
+                ", detalis2=" + subject2 +
                 '}';
     }
 

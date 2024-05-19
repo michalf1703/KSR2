@@ -1,9 +1,8 @@
-package ksr2.ksrproject2.logic.calculation.sets;
+package ksr2.ksrproject2.logic.calculation.membershipFunctions;
 
-import ksr2.ksrproject2.logic.calculation.membershipFunctions.ComplementMembershipFunction;
-import ksr2.ksrproject2.logic.calculation.membershipFunctions.IntersectMembershipFunction;
-import ksr2.ksrproject2.logic.calculation.membershipFunctions.MembershipFunction;
-import ksr2.ksrproject2.logic.calculation.membershipFunctions.UnionMembershipFunction;
+import ksr2.ksrproject2.logic.calculation.sets.ClassicSet;
+import ksr2.ksrproject2.logic.calculation.sets.ContinuousSet;
+import ksr2.ksrproject2.logic.calculation.sets.DiscreteSet;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -35,11 +34,6 @@ public class FuzzySet {
         }
     }
 
-    public double getCardinality(List<Double> databaseValues) {
-        return databaseValues.stream()
-                .mapToDouble(this::getMembershipDegree)
-                .sum();
-    }
 
     public ClassicSet getSupport() {
         if (universeOfDiscourse instanceof DiscreteSet) {
@@ -53,12 +47,6 @@ public class FuzzySet {
         }
     }
 
-    public ClassicSet getSupport(List<Double> databaseValues) {
-        List<Double> list = databaseValues.stream()
-                .filter(val -> getMembershipDegree(val) > 0)
-                .collect(Collectors.toList());
-        return new DiscreteSet(list);
-    }
 
     public ClassicSet getAlphaCut(double alpha) {
         ClassicSet support = getSupport();
@@ -69,7 +57,7 @@ public class FuzzySet {
                     .collect(Collectors.toList());
             return new DiscreteSet(alphaCut);
         } else {
-            throw new UnsupportedOperationException("Not implemented yet."); // TODO: need implementation
+            throw new UnsupportedOperationException("Not implemented yet.");
         }
     }
 
@@ -78,7 +66,7 @@ public class FuzzySet {
     }
 
     public double getDegreeOfFuzziness(List<Double> databaseValues) {
-        return getSupport(databaseValues).getSize() / databaseValues.size();
+        return getSupport().getSize() / databaseValues.size();
     }
 
     public FuzzySet complement(FuzzySet otherSet) {

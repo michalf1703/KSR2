@@ -1,7 +1,6 @@
 package ksr2.ksrproject2.logic.summarization;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public interface SingleSubjectSummary {
@@ -22,7 +21,7 @@ public interface SingleSubjectSummary {
         return measures;
     }
 
-    double getGoodnessOfSummary();
+    double getOptimalSummary();
 
     double getDegreeOfTruth_T1();
 

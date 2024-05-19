@@ -9,13 +9,13 @@ import java.util.List;
 public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
 
     private final List<Label> summarizers;
-    private final List<PowerliftingResultDetalis> detalis1;
-    private final List<PowerliftingResultDetalis> detalis2;
+    private final List<PowerliftingResultDetalis> subject1;
+    private final List<PowerliftingResultDetalis> subject2;
 
-    public FourthFormMultiSubjectSummary(List<Label> summarizers, List<PowerliftingResultDetalis> detalis1, List<PowerliftingResultDetalis> detalis2) {
+    public FourthFormMultiSubjectSummary(List<Label> summarizers, List<PowerliftingResultDetalis> subject1, List<PowerliftingResultDetalis> subject2) {
         this.summarizers = summarizers;
-        this.detalis1 = detalis1;
-        this.detalis2 = detalis2;
+        this.subject1 = subject1;
+        this.subject2 = subject2;
     }
 
     @Override
@@ -27,8 +27,8 @@ public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
     public String toString() {
         return "FourthFormMultiSubjectSummary{" +
                 "summarizers=" + summarizers +
-                ", detalis1=" + detalis1 +
-                ", detalis2=" + detalis2 +
+                ", detalis1=" + subject1 +
+                ", detalis2=" + subject2 +
                 '}';
     }
 
