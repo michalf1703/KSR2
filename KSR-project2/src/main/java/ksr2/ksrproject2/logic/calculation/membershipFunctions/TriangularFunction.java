@@ -5,9 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
-@EqualsAndHashCode
 @Getter
-@ToString
 public class TriangularFunction implements MembershipFunction{
     private final double a;
     private final double b;

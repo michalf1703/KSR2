@@ -1,6 +1,6 @@
 package ksr2.ksrproject2.logic.summarization;
 
-import ksr2.ksrproject2.logic.calculation.membershipFunctions.FuzzySet;
+import ksr2.ksrproject2.logic.calculation.sets.FuzzySet;
 
 public class AbsoluteQuantifier extends Quantifier{
 

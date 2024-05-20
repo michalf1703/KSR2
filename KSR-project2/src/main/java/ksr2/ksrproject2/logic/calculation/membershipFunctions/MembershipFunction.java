@@ -7,3 +7,7 @@ public interface MembershipFunction {
     double getLeftBoundary();
     double getRightBoundary();
 }
+
+//zastosowanie interfejsu zapewnia nam, że pewne metody muszą być zaimplementowane przez różne typy funkcji przynależności
+// możliwość dodawania nowych funkcji przynależności bez konieczności refaktoryzacji
+// poprawia czytelność

@@ -6,11 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 @Getter
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
-public class PowerliftingResultDetalis {
-    private long id;
+public class PowerliftingResult {
     private double age;
     private double bodyWeight;
     private double squatStrenghtLevel;

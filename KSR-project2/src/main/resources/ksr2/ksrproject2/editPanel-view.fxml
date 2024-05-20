@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -12,7 +13,7 @@
 <AnchorPane prefHeight="490.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ksr2.ksrproject2.EditPanelView">
    <children>
       <Button fx:id="retrunButton" layoutX="478.0" layoutY="13.0" mnemonicParsing="false" onAction="#onReturnToMainPage" text="Return to main page" />
-      <TabPane layoutX="14.0" layoutY="59.0" prefHeight="336.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="14.0" layoutY="59.0" prefHeight="336.0" prefWidth="246.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Quantifier">
             <content>
@@ -27,11 +28,12 @@
           </Tab>
           <Tab text="Summarizer">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="235.0">
                      <children>
                         <Button layoutY="281.0" mnemonicParsing="false" text="Add" />
                         <Button layoutX="47.0" layoutY="281.0" mnemonicParsing="false" text="Edit" />
                         <Button layoutX="92.0" layoutY="281.0" mnemonicParsing="false" text="Remove" />
+                        <CheckBox layoutY="14.0" mnemonicParsing="false" text="about 3 times bodyweight score in squat" />
                      </children>
                   </AnchorPane>
             </content>

@@ -23,7 +23,7 @@
       <ChoiceBox fx:id="qualifierChoiceBox" layoutX="362.0" layoutY="103.0" prefWidth="150.0" />
       <Button fx:id="generateSummarizationButton" layoutX="29.0" layoutY="175.0" mnemonicParsing="false" text="Generate summarization" />
       <Button fx:id="saveSummarizationButton" layoutX="185.0" layoutY="175.0" mnemonicParsing="false" text="Save summarization" />
-      <Button fx:id="goToMultiSubjectButton" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" text="Go to multi subject summary" />
+      <Button fx:id="goToMultiSubjectButton" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#onMultiSubjectButton" text="Go to multi subject summary" />
       <Button fx:id="clearSummarizationButton" layoutX="322.0" layoutY="175.0" mnemonicParsing="false" text="Clear summarization" />
       <Text layoutX="581.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summarizer" />
       <ChoiceBox fx:id="summarizerChoiceBox" layoutX="539.0" layoutY="103.0" prefWidth="150.0" />

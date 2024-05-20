@@ -1,5 +1,6 @@
 package ksr2.ksrproject2.logic.summarization;
 
+import ksr2.ksrproject2.logic.calculation.sets.ContinuousSet;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import java.awt.Label;
@@ -10,4 +11,5 @@ import java.util.List;
 public class LinguisticVariable {
     private String name;
     private List<Label> labels;
+    private ContinuousSet universeOfDiscourse;
 }

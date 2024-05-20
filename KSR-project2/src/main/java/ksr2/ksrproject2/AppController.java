@@ -26,13 +26,15 @@ public class AppController {
     @FXML
     private Button advancedUserPanelButton;
 
+    @FXML ChoiceBox<String> sortByChoiceBox;
+
 
     @FXML
     protected void initialize() {
         quantifierChoiceBox.getItems().addAll("Almost none", "Some", "About half", "Many", "Almost all", "Far below 1000", "Around 2000", "From 3000 to 6000", "Around 7000", "Much more than 8000");
         qualifierChoiceBox.getItems().addAll("junior", "senior", "master", "lightweight", "middleweight", "heavyweight", "superheavyweight", "less than 3 times bodyweight score in squat", "about 3 times bodyweight score in squat", "between 2 and 4 times bodyweight score in squat","about 4 times bodyweight score in squat", "more than 4.5 times bodyweight score in squat"  );
-        summarizerChoiceBox.getItems().addAll("age", "weight", "squat-strenght-level", "high", "very high");
-
+        summarizerChoiceBox.getItems().addAll("less than 3 times bodyweight score in squat", "weight", "squat-strenght-level", "high", "very high");
+        sortByChoiceBox.getItems().addAll("T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10");
 
     }
 
@@ -40,6 +42,23 @@ public class AppController {
     void onAdvancedUserPanelButton(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("editPanel-view.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    void onMultiSubjectButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("multiView.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);

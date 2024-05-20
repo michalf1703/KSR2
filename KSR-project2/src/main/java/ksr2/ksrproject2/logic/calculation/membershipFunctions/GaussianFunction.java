@@ -5,16 +5,14 @@ import lombok.Getter;
 import lombok.ToString;
 
 @Getter
-@ToString
-@EqualsAndHashCode
 public class GaussianFunction implements MembershipFunction{
-    private final double centreMax;
+    private final double center;
     private final double standardDeviation;
     private final double leftLimit;
     private final double rightLimit;
 
-    public GaussianFunction(double centreMax, double standardDeviation, double leftLimit, double rightLimit) {
-        this.centreMax = centreMax;
+    public GaussianFunction(double center, double standardDeviation, double leftLimit, double rightLimit) {
+        this.center = center;
         this.standardDeviation = standardDeviation;
         this.leftLimit = leftLimit;
         this.rightLimit = rightLimit;
@@ -25,7 +23,7 @@ public class GaussianFunction implements MembershipFunction{
         if (x < leftLimit || x > rightLimit) {
             return 0;
         }
-        double exponent = -1 * Math.pow((x - centreMax), 2) / Math.pow(2 * standardDeviation, 2);
+        double exponent = -1 * Math.pow((x - center), 2) / Math.pow(2 * standardDeviation, 2);
         return Math.exp(exponent);
     }
 

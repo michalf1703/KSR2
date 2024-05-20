@@ -1,30 +1,30 @@
 package ksr2.ksrproject2.logic.summarization.forms;
 
-import ksr2.ksrproject2.logic.model.PowerliftingResultDetalis;
+import ksr2.ksrproject2.logic.model.PowerliftingResult;
 import ksr2.ksrproject2.logic.summarization.Label;
-import ksr2.ksrproject2.logic.summarization.MeasureWeight;
 import ksr2.ksrproject2.logic.summarization.Quantifier;
-import ksr2.ksrproject2.logic.summarization.SingleSubjectSummary;
 
 import java.util.List;
 import java.util.Map;
 
 public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
-    private final MeasureWeight measureWeight;
+    private final Map<String, Double> weights;
     private final Quantifier quantifier;
     private final List<Label> summarizers;
-    private final List<PowerliftingResultDetalis> subject;
+    private final List<PowerliftingResult> subject;
 
-    public FirstFormSingleSubjectSummary(MeasureWeight measureWeight, Quantifier quantifier, List<Label> summarizers, List<PowerliftingResultDetalis> subject) {
-        this.measureWeight = measureWeight;
+    public FirstFormSingleSubjectSummary(Map<String, Double> weights, Quantifier quantifier, List<Label> summarizers, List<PowerliftingResult> subject) {
+        this.weights = weights;
         this.quantifier = quantifier;
         this.summarizers = summarizers;
         this.subject = subject;
     }
+
+
     @Override
     public double getOptimalSummary() {
         Map<String, Double> measures = calculateMeasures();
-        return measures.entrySet().stream().mapToDouble(e -> e.getValue() * measureWeight.getWeights().get(e.getKey())).sum();
+        return measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.get(e.getKey())).sum();
     }
     @Override
     public double getDegreeOfTruth_T1() {
@@ -84,7 +84,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public String toString() {
         return "FirstFormSingleSubjectSummary{" +
-                "measureWeight=" + measureWeight +
+                "measureWeight="  +
                 ", quantifier=" + quantifier +
                 ", summarizers=" + summarizers +
                 ", detalis=" + subject +

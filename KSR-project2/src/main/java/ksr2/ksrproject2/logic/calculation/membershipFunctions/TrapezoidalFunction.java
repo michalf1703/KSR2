@@ -1,14 +1,8 @@
 package ksr2.ksrproject2.logic.calculation.membershipFunctions;
 
-
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 @Getter
-@ToString
-@EqualsAndHashCode
 public class TrapezoidalFunction implements MembershipFunction{
     private final double a;
     private final double b;

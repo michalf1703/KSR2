@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.ToString;
 
 @Getter
-@EqualsAndHashCode
-@ToString
 public class ContinuousSet implements ClassicSet{
     private final double startOfUniverseOFDiscourse;
     private final double endOfUniverseOFDiscourse;

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@EqualsAndHashCode
-@ToString
 public class DiscreteSet implements ClassicSet {
     private final List<Double> elements;
 

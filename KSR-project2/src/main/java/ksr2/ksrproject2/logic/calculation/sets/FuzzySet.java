@@ -1,20 +1,14 @@
-package ksr2.ksrproject2.logic.calculation.membershipFunctions;
+package ksr2.ksrproject2.logic.calculation.sets;
 
-import ksr2.ksrproject2.logic.calculation.sets.ClassicSet;
-import ksr2.ksrproject2.logic.calculation.sets.ContinuousSet;
-import ksr2.ksrproject2.logic.calculation.sets.DiscreteSet;
-import lombok.EqualsAndHashCode;
+import ksr2.ksrproject2.logic.calculation.membershipFunctions.MembershipFunction;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
 @RequiredArgsConstructor
-@EqualsAndHashCode
-@ToString
 public class FuzzySet {
     private final MembershipFunction membershipFunction;
     private final ClassicSet universeOfDiscourse;
@@ -23,6 +17,8 @@ public class FuzzySet {
         return membershipFunction.getValue(x);
     }
 
+    //liczba kardynalna - tak jakby moc zbioru
+    //w przypadku zbioru rozmytego (sigmaCount) - liczy pole pod wykresem, liczy pole wykresu funkcji przynależności
     public double getCardinality() {
         if (universeOfDiscourse instanceof DiscreteSet) {
             return ((DiscreteSet) universeOfDiscourse).getElements()
@@ -34,7 +30,7 @@ public class FuzzySet {
         }
     }
 
-
+//support - nośnik, zbiór klasyczny wszystkich elementów które spełniają warunek y>0,
     public ClassicSet getSupport() {
         if (universeOfDiscourse instanceof DiscreteSet) {
             List<Double> supportElements = ((DiscreteSet) universeOfDiscourse).getElements()
@@ -47,7 +43,8 @@ public class FuzzySet {
         }
     }
 
-
+//alfaCut - zbior klasyczny, uogólnienie definicji nośnika , jeśli za alfa przyjmiemy 0 to bedzie nośnik
+//zbiór elementów dla których funkcja przynależności jest miX > alfa
     public ClassicSet getAlphaCut(double alpha) {
         ClassicSet support = getSupport();
         if (support instanceof DiscreteSet) {
@@ -61,38 +58,43 @@ public class FuzzySet {
         }
     }
 
+    //stopień rozmytości - określa jak bardzo zbiór jest rozmyty w kontekście swojego uniwersum,
+    //stopień rozmytości potrzebny do T2 (stopień rozmycia)
     public double getDegreeOfFuzziness() {
         return getSupport().getSize() / universeOfDiscourse.getSize();
     }
 
-    public double getDegreeOfFuzziness(List<Double> databaseValues) {
-        return getSupport().getSize() / databaseValues.size();
-    }
-
-    public FuzzySet complement(FuzzySet otherSet) {
-        return new FuzzySet(new ComplementMembershipFunction(membershipFunction), universeOfDiscourse);
+    public FuzzySet complement() {
+        return null;
+        //return new FuzzySet(x -> 1 - membershipFunction.getValue(x), universeOfDiscourse);
     }
 
     public FuzzySet union(FuzzySet otherSet) {
-        return new FuzzySet(new UnionMembershipFunction(membershipFunction, otherSet.membershipFunction), universeOfDiscourse);
+        return null;
+       // return new FuzzySet(x -> Math.max(membershipFunction.getValue(x), otherSet.membershipFunction.getValue(x)), universeOfDiscourse);
     }
 
     public FuzzySet intersect(FuzzySet otherSet) {
-        return new FuzzySet(new IntersectMembershipFunction(membershipFunction, otherSet.membershipFunction), universeOfDiscourse);
+        return null;
+      //  return new FuzzySet(x -> Math.min(membershipFunction.getValue(x), otherSet.membershipFunction.getValue(x)), universeOfDiscourse);
     }
 
+//miało być sprawdzenie czy jest pusty
     public boolean isEmpty() {
         return getSupport().isEmpty();
     }
 
+    // wypukły jest wtedy gdy każdy jego przekrój alfa bedzie wypukły, czyli nie ma dziury
     public boolean isConvex() {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
+    // zbior rozmyty jest normalny kiedy wysokość wynosi 1
     public boolean isNormal() {
         return getHeight() == 1;
     }
 
+    //wysokość zbioru rozmytego to najwyższa wartość funkcji przynależności
     public double getHeight() {
         if (universeOfDiscourse instanceof DiscreteSet) {
             return ((DiscreteSet) universeOfDiscourse).getElements()

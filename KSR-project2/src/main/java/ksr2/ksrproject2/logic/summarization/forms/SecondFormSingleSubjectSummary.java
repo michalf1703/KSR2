@@ -1,32 +1,32 @@
 package ksr2.ksrproject2.logic.summarization.forms;
 
-import ksr2.ksrproject2.logic.model.PowerliftingResultDetalis;
+import ksr2.ksrproject2.logic.model.PowerliftingResult;
 import ksr2.ksrproject2.logic.summarization.Label;
-import ksr2.ksrproject2.logic.summarization.MeasureWeight;
-import ksr2.ksrproject2.logic.summarization.Quantifier;
-import ksr2.ksrproject2.logic.summarization.SingleSubjectSummary;
+import ksr2.ksrproject2.logic.summarization.RelativeQuantifier;
 
 import java.util.List;
+import java.util.Map;
 
 public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
-    private final MeasureWeight measureWeight;
-    private final Quantifier quantifier;
+    private final Map<String, Double> weights;
+    private final RelativeQuantifier quantifier;
     private final List<Label> qualifiers;
     private final List<Label> summarizers;
-    private final List<PowerliftingResultDetalis> subject;
+    private final List<PowerliftingResult> subject;
 
-
-    public SecondFormSingleSubjectSummary(MeasureWeight measureWeight, Quantifier quantifier, List<Label> qualifiers, List<Label> summarizers, List<PowerliftingResultDetalis> subject) {
-        this.measureWeight = measureWeight;
+    public SecondFormSingleSubjectSummary(Map<String, Double> weights, RelativeQuantifier quantifier, List<Label> qualifiers, List<Label> summarizers, List<PowerliftingResult> subject) {
+        this.weights = weights;
         this.quantifier = quantifier;
         this.qualifiers = qualifiers;
         this.summarizers = summarizers;
         this.subject = subject;
     }
 
+
     @Override
     public double getOptimalSummary() {
-        return 0;
+        Map<String, Double> measures = calculateMeasures();
+        return measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.get(e.getKey())).sum();
     }
 
   public double getDegreeOfTruth_T1() {
@@ -78,7 +78,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public String toString() {
         return "SecondFormSingleSubjectSummary{" +
-                "measureWeight=" + measureWeight +
+                "measureWeight=" +
                 ", quantifier=" + quantifier +
                 ", qualifiers=" + qualifiers +
                 ", summarizers=" + summarizers +
