@@ -9,8 +9,14 @@ public abstract class Quantifier {
     private String name;
     private FuzzySet fuzzySet;
 
+
+
     @Override
     public String toString() {
         return name;
+    }
+
+    public FuzzySet getFuzzySet() {
+        return fuzzySet;
     }
 }
