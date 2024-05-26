@@ -5,6 +5,7 @@ import ksr2.ksrproject2.logic.model.PowerliftingResult;
 import ksr2.ksrproject2.logic.summarization.Label;
 import ksr2.ksrproject2.logic.summarization.Quantifier;
 import ksr2.ksrproject2.logic.summarization.AbsoluteQuantifier;
+import ksr2.ksrproject2.logic.summarization.RelativeQuantifier;
 
 import java.util.List;
 import java.util.Map;
@@ -30,9 +31,34 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     }
     @Override
     public double getDegreeOfTruth_T1() {
+        double sum = 0.0;
 
-        return 0;
+        if (quantifier instanceof AbsoluteQuantifier) {
+            for (PowerliftingResult record : subject) {
+                double sumOfMembershipDegrees = 0.0;
+                for (Label summarizer : summarizers) {
+                    double membershipDegree = summarizer.getFuzzySet().getMembershipDegree(record);
+                    sumOfMembershipDegrees += membershipDegree;
+                }
+                sum += sumOfMembershipDegrees / summarizers.size(); // Uśrednienie sumy dla każdego summarizera
+            }
+            sum /= subject.size(); 
+        } else if (quantifier instanceof RelativeQuantifier) {
+            for (PowerliftingResult record : subject) {
+                double sumOfMembershipDegrees = 0.0;
+                for (Label summarizer : summarizers) {
+                    double membershipDegree = summarizer.getFuzzySet().getMembershipDegree(record);
+                    sumOfMembershipDegrees += membershipDegree;
+                }
+                sum += sumOfMembershipDegrees / summarizers.size(); // Uśrednienie sumy dla każdego summarizera
+            }
+        }
+
+        double degreeOfTruth = sum;
+
+        return degreeOfTruth;
     }
+
 
     @Override
     public double getDegreeOfImprecision_T2() {
