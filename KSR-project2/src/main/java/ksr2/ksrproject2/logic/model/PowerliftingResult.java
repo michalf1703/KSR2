@@ -18,4 +18,6 @@ public class PowerliftingResult {
     private double glossbrennerLevel;
     private double goodliftLevel;
 
+    public PowerliftingResult(double age, double bodyWeight, double squatStrenghtLevel, double benchpressStrenghtLevel, double deadliftStrenghtLevel, double totalPowerliftStrenghtLevel, double dotsLevel, double wilksLevel, double glossbrennerLevel, double goodliftLevel) {
+    }
 }
