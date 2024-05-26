@@ -36,7 +36,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
 
     @Override
     public double getDegreeOfImprecision_T2() {
-        // Obliczamy stopień rozmycia dla każdego zbioru rozmytego
+
         double productOfImprecision = 1.0;
         int numberOfSummarizers = summarizers.size();
 
@@ -45,10 +45,8 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
             productOfImprecision *= degreeOfFuzziness;
         }
 
-        // Obliczamy średnią geometryczną
         double geometricMean = Math.pow(productOfImprecision, 1.0 / numberOfSummarizers);
 
-        // Zwracamy wynik T2
         return 1 - geometricMean;
     }
 
@@ -84,12 +82,29 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
 
     @Override
     public double getDegreeOfQuantifierCardinality_T7() {
-        return 0;
+        double cardinality = quantifier.getFuzzySet().getCardinality();
+        double universeSize = 1;
+
+        if (quantifier instanceof AbsoluteQuantifier) {
+            universeSize = subject.size();
+        }
+
+        return 1 - (cardinality / universeSize);
     }
+
 
     @Override
     public double getDegreeOfSummarizerCardinality_T8() {
-        return 0;
+        double productOfCardinalities = 1.0;
+
+        for (Label summarizer : summarizers) {
+            double cardinality = summarizer.getFuzzySet().getCardinality();
+            productOfCardinalities *= cardinality;
+        }
+
+        double geometricMean = Math.pow(productOfCardinalities, 1.0 / summarizers.size());
+
+        return 1 - geometricMean;
     }
 
     @Override
