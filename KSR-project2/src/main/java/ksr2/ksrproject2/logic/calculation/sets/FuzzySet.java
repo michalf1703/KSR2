@@ -84,26 +84,11 @@ public class FuzzySet {
         return getSupport().isEmpty();
     }
 
-    // wypukły jest wtedy gdy każdy jego przekrój alfa bedzie wypukły, czyli nie ma dziury
-    public boolean isConvex() {
-        throw new UnsupportedOperationException("Not implemented yet.");
+    public double getDegreeOfFuzziness(Double aDouble) {
+        return getMembershipDegree(aDouble);
     }
 
-    // zbior rozmyty jest normalny kiedy wysokość wynosi 1
-    public boolean isNormal() {
-        return getHeight() == 1;
-    }
-
-    //wysokość zbioru rozmytego to najwyższa wartość funkcji przynależności
-    public double getHeight() {
-        if (universeOfDiscourse instanceof DiscreteSet) {
-            return ((DiscreteSet) universeOfDiscourse).getElements()
-                    .stream()
-                    .mapToDouble(this::getMembershipDegree)
-                    .max()
-                    .orElse(0);
-        } else {
-            throw new UnsupportedOperationException("Not implemented yet.");
-        }
+    public double getCardinality(Double aDouble) {
+        return getMembershipDegree(aDouble);
     }
 }

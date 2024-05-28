@@ -1,4 +1,4 @@
-package ksr2.ksrproject2.logic.summarization.forms;
+package ksr2.ksrproject2.logic.summarization.forms.multiForms;
 
 import ksr2.ksrproject2.logic.model.PowerliftingResult;
 import ksr2.ksrproject2.logic.summarization.Label;

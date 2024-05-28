@@ -1,13 +1,13 @@
-package ksr2.ksrproject2.logic.summarization.forms;
+package ksr2.ksrproject2.logic.summarization.forms.singleForms;
 
 
 import ksr2.ksrproject2.logic.model.PowerliftingResult;
 import ksr2.ksrproject2.logic.summarization.Label;
 import ksr2.ksrproject2.logic.summarization.Quantifier;
 import ksr2.ksrproject2.logic.summarization.AbsoluteQuantifier;
-import ksr2.ksrproject2.logic.summarization.RelativeQuantifier;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
@@ -25,38 +25,21 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
 
 
     @Override
-    public double getOptimalSummary() {
+    public double getMainSummaryMeasure() {
         Map<String, Double> measures = calculateMeasures();
         return measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.get(e.getKey())).sum();
     }
     @Override
     public double getDegreeOfTruth_T1() {
-        double sum = 0.0;
-
-        if (quantifier instanceof AbsoluteQuantifier) {
-            for (PowerliftingResult record : subject) {
-                double sumOfMembershipDegrees = 0.0;
-                for (Label summarizer : summarizers) {
-                    double membershipDegree = summarizer.getFuzzySet().getMembershipDegree(record);
-                    sumOfMembershipDegrees += membershipDegree;
-                }
-                sum += sumOfMembershipDegrees / summarizers.size(); // Uśrednienie sumy dla każdego summarizera
-            }
-            sum /= subject.size(); 
-        } else if (quantifier instanceof RelativeQuantifier) {
-            for (PowerliftingResult record : subject) {
-                double sumOfMembershipDegrees = 0.0;
-                for (Label summarizer : summarizers) {
-                    double membershipDegree = summarizer.getFuzzySet().getMembershipDegree(record);
-                    sumOfMembershipDegrees += membershipDegree;
-                }
-                sum += sumOfMembershipDegrees / summarizers.size(); // Uśrednienie sumy dla każdego summarizera
-            }
+        double r = 0.0;
+        double m;
+        for (PowerliftingResult result : subject) {
+            r += and(summarizers, result);
         }
-
-        double degreeOfTruth = sum;
-
-        return degreeOfTruth;
+        if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
+            m = 1;
+        } else m = subject.size();
+        return quantifier.getFuzzySet().getMembershipDegree(r / m);
     }
 
 
@@ -79,19 +62,37 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
 
     @Override
     public double getDegreeOfCovering_T3() {
-        return 0;
+        int t = 0;
+        for (PowerliftingResult result : subject) {
+            double intersectedSummarizer = and(summarizers, result);
+            if (intersectedSummarizer > 0) {
+                t++;
+            }
+        }
+        if (t == 0) {
+            return 0;
+        }
+        return (double) t / subject.size();
     }
 
     @Override
     public double getDegreeOfAppropriateness_T4() {
-
-        return 0;
+        double multiply = 1.0;
+        for (Label summarizer : summarizers) {
+            double r = 0.0;
+            for (PowerliftingResult result : subject) {
+                if (summarizer.getFuzzySet().getMembershipDegree(fieldForLabel(summarizer, result)) > 0) {
+                    r++;
+                }
+            }
+            multiply *= (r / subject.size());
+        }
+        return Math.abs(multiply - getDegreeOfCovering_T3());
     }
 
     @Override
     public double getDegreeOfSummary_T5() {
-        int numberOfSummarizers = summarizers.size();
-        return 2 * Math.pow(0.5, numberOfSummarizers);
+        return 2 * Math.pow(0.5,summarizers.size());
     }
 
 
@@ -145,17 +146,21 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
 
     @Override
     public double getLengthOfQualifier_T11() {
-        return 0;
+        return 1.0;
     }
 
     @Override
     public String toString() {
-        return "FirstFormSingleSubjectSummary{" +
-                "measureWeight="  +
-                ", quantifier=" + quantifier +
-                ", summarizers=" + summarizers +
-                ", detalis=" + subject +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" powerligting results are/have got ");
+        for (int i = 0; i < summarizers.size(); i++) {
+            Label summarizer = summarizers.get(i);
+            sb.append(summarizer.getName().toUpperCase(Locale.ROOT)).append(" ").append(summarizer.getLinguisticVariableName().toLowerCase(Locale.ROOT));
+            if (i + 1 < summarizers.size()) {
+                sb.append(" and ");
+            }
+        }
+        return sb.toString();
     }
 
 }

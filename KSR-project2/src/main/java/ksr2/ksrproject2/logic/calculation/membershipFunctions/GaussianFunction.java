@@ -1,8 +1,6 @@
 package ksr2.ksrproject2.logic.calculation.membershipFunctions;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.ToString;
 
 @Getter
 public class GaussianFunction implements MembershipFunction{

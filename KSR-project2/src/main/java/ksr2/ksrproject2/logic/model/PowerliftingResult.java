@@ -19,5 +19,31 @@ public class PowerliftingResult {
     private double goodliftLevel;
 
     public PowerliftingResult(double age, double bodyWeight, double squatStrenghtLevel, double benchpressStrenghtLevel, double deadliftStrenghtLevel, double totalPowerliftStrenghtLevel, double dotsLevel, double wilksLevel, double glossbrennerLevel, double goodliftLevel) {
+        this.age = age;
+        this.bodyWeight = bodyWeight;
+        this.squatStrenghtLevel = squatStrenghtLevel;
+        this.benchpressStrenghtLevel = benchpressStrenghtLevel;
+        this.deadliftStrenghtLevel = deadliftStrenghtLevel;
+        this.totalPowerliftStrenghtLevel = totalPowerliftStrenghtLevel;
+        this.dotsLevel = dotsLevel;
+        this.wilksLevel = wilksLevel;
+        this.glossbrennerLevel = glossbrennerLevel;
+        this.goodliftLevel = goodliftLevel;
+    }
+
+    @Override
+    public String toString() {
+        return "PowerliftingResult{" +
+                "age=" + age +
+                ", bodyWeight=" + bodyWeight +
+                ", squatStrenghtLevel=" + squatStrenghtLevel +
+                ", benchpressStrenghtLevel=" + benchpressStrenghtLevel +
+                ", deadliftStrenghtLevel=" + deadliftStrenghtLevel +
+                ", totalPowerliftStrenghtLevel=" + totalPowerliftStrenghtLevel +
+                ", dotsLevel=" + dotsLevel +
+                ", wilksLevel=" + wilksLevel +
+                ", glossbrennerLevel=" + glossbrennerLevel +
+                ", goodliftLevel=" + goodliftLevel +
+                '}';
     }
 }

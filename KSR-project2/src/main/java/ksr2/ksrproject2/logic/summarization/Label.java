@@ -10,6 +10,7 @@ import lombok.Getter;
 public class Label {
     private String name;
     private FuzzySet fuzzySet;
+    private String linguisticVariableName;
 
     public double getMembership(double x) {
         return fuzzySet.getMembershipDegree(x);

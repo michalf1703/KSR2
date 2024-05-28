@@ -1,4 +1,4 @@
-package ksr2.ksrproject2.logic.summarization.forms;
+package ksr2.ksrproject2.logic.summarization.forms.multiForms;
 
 
 import java.util.List;

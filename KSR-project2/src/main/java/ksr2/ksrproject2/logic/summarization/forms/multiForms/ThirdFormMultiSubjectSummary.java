@@ -1,4 +1,4 @@
-package ksr2.ksrproject2.logic.summarization.forms;
+package ksr2.ksrproject2.logic.summarization.forms.multiForms;
 
 import ksr2.ksrproject2.logic.model.PowerliftingResult;
 import ksr2.ksrproject2.logic.summarization.Label;
@@ -6,14 +6,15 @@ import ksr2.ksrproject2.logic.summarization.Quantifier;
 
 import java.util.List;
 
-public class SecondFormMultiSubjectSummary implements MultiSubjectSummary {
+public class ThirdFormMultiSubjectSummary implements MultiSubjectSummary {
+
     private final Quantifier quantifier;
     private final List<Label> summarizers;
     private final List<Label> qualifiers;
     private final List<PowerliftingResult> subject1;
     private final List<PowerliftingResult> subject2;
 
-    public SecondFormMultiSubjectSummary(Quantifier quantifier, List<Label> summarizers, List<Label> qualifiers, List<PowerliftingResult> subject1, List<PowerliftingResult> subject2) {
+    public ThirdFormMultiSubjectSummary(Quantifier quantifier, List<Label> summarizers, List<Label> qualifiers, List<PowerliftingResult> subject1, List<PowerliftingResult> subject2) {
         this.quantifier = quantifier;
         this.summarizers = summarizers;
         this.qualifiers = qualifiers;
@@ -28,7 +29,7 @@ public class SecondFormMultiSubjectSummary implements MultiSubjectSummary {
 
     @Override
     public String toString() {
-        return "SecondFormMultiSubjectSummary{" +
+        return "ThirdFormMultiSubjectSummary{" +
                 "quantifier=" + quantifier +
                 ", summarizers=" + summarizers +
                 ", qualifiers=" + qualifiers +
@@ -36,7 +37,5 @@ public class SecondFormMultiSubjectSummary implements MultiSubjectSummary {
                 ", detalis2=" + subject2 +
                 '}';
     }
-
-
 
 }
