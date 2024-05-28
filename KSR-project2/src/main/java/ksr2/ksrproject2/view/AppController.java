@@ -22,6 +22,7 @@ import ksr2.ksrproject2.logic.summarization.forms.singleForms.SecondFormSingleSu
 import ksr2.ksrproject2.logic.summarization.forms.singleForms.SingleSubjectSummary;
 import ksr2.ksrproject2.view.model.SingleSubjectSummaryDTO;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -209,6 +210,28 @@ public class AppController implements Initializable {
         map.put("T10", Double.valueOf(weightT10TF.textProperty().get()));
         map.put("T11", Double.valueOf(weightT11TF.textProperty().get()));
         return new MeasureWeights(map);
+    }
+    @FXML
+    private void saveToFileBtn_onAction() {
+        try (FileWriter writer = new FileWriter("summaries.txt")) {
+            for (SingleSubjectSummary summary : summaries) {
+                writer.write(summary.toString() + " ");
+                writer.write("[T1: " + summary.getDegreeOfTruth_T1() +"] ");
+                writer.write("[T2: " + summary.getDegreeOfImprecision_T2() + "] ");
+                writer.write("[T3: " + summary.getDegreeOfCovering_T3() + "] ");
+                writer.write("[T4: " + summary.getDegreeOfAppropriateness_T4() + "] ");
+                writer.write("[T5: " + summary.getDegreeOfSummary_T5() + "] ");
+                writer.write("[T6: " + summary.getDegreeOfQuantifierImprecision_T6() + "] ");
+                writer.write("[T7: " + summary.getDegreeOfQuantifierCardinality_T7() + "] ");
+                writer.write("[T8: " + summary.getDegreeOfSummarizerCardinality_T8() + "] ");
+                writer.write("[T9: " + summary.getDegreeOfQualifierImprecision_T9() + "] ");
+                writer.write("[T10: " + summary.getDegreeOfQualifierCardinality_T10() + "] ");
+                writer.write("[T11: " + summary.getLengthOfQualifier_T11() + "] ");
+                writer.write(System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     private void generateSummaryBtn_onAction() {

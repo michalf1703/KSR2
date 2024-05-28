@@ -18,7 +18,7 @@
       </Text>
       <Text layoutX="448.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qualifier" />
       <Button fx:id="generateSummarizationButton" layoutX="21.0" layoutY="342.0" mnemonicParsing="false" onAction="#generateSummaryBtn_onAction" text="Generate summarization" />
-      <Button fx:id="saveSummarizationButton" layoutX="182.0" layoutY="342.0" mnemonicParsing="false" text="Save summarization" />
+      <Button fx:id="saveSummarizationButton" layoutX="182.0" layoutY="342.0" mnemonicParsing="false" onAction="#saveToFileBtn_onAction" text="Save summarization" />
       <Button fx:id="goToMultiSubjectButton" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#onMultiSubjectButton" text="Go to multi subject summary" />
       <Button fx:id="clearSummarizationButton" layoutX="317.0" layoutY="342.0" mnemonicParsing="false" text="Clear summarization" />
       <Text layoutX="152.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summarizer" />
