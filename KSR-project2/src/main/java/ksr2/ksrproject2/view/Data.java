@@ -1,6 +1,7 @@
 package ksr2.ksrproject2.view;
 
 
+import ksr2.ksrproject2.logic.calculation.membershipFunctions.GaussianFunction;
 import ksr2.ksrproject2.logic.calculation.membershipFunctions.TrapezoidalFunction;
 import ksr2.ksrproject2.logic.calculation.membershipFunctions.TriangularFunction;
 import ksr2.ksrproject2.logic.calculation.sets.ContinuousSet;
@@ -68,6 +69,8 @@ public class Data {
         Label about2times = new Label("about 2 times bodyweight score in benchpress", new FuzzySet(new TrapezoidalFunction( 1.7, 2, 2.5,3), new ContinuousSet(1.7, 3)), "Benchpress-strenght-level");
         Label about2_5times = new Label("about 2.5 times bodyweight score in benchpress", new FuzzySet(new TriangularFunction( 2.2, 2.5, 3.0), new ContinuousSet(2.2, 3.0)), "Benchpress-strenght-level");
         Label moreThan2_5times = new Label("more than 2.5 times bodyweight score in benchpress", new FuzzySet(new TrapezoidalFunction( 2.5, 3, 3.3,3.3), new ContinuousSet(2.5, 3.3)), "Benchpress-strenght-level");
+        List<Label> benchpressLabels = new ArrayList<>(List.of(lessThan2times, about2times, about2_5times, moreThan2_5times));
+        LinguisticVariable benchpress = new LinguisticVariable("Benchpress-strenght-level", benchpressLabels, new ContinuousSet(0.1, 3.3));
 
         //deadlift
         Label lessThan3timesDeadlift = new Label("less than 3 times bodyweight score in deadlift", new FuzzySet(new TrapezoidalFunction(0.3, 0.3, 2, 3), new ContinuousSet(0.3, 3)), "Deadlift-strenght-level");
@@ -91,6 +94,8 @@ public class Data {
         Label advancedDots = new Label("advanced dots level", new FuzzySet(new TrapezoidalFunction(300, 340, 440, 460), new ContinuousSet(300, 460)), "Dots-level");
         Label masterDots = new Label("master dots level", new FuzzySet(new TrapezoidalFunction(430, 480, 520, 560), new ContinuousSet(430, 560)), "Dots-level");
         Label eliteDots = new Label("elite dots level", new FuzzySet(new TrapezoidalFunction(500, 580, 704, 704), new ContinuousSet(500, 704)), "Dots-level");
+        List<Label> dotsLabels = new ArrayList<>(List.of(beginnerDots, intermediateDots, advancedDots, masterDots, eliteDots));
+        LinguisticVariable dots = new LinguisticVariable("Dots-level", dotsLabels, new ContinuousSet(81, 704));
 
         //wilks
         Label lessThen300 = new Label("less then 300 wilks score", new FuzzySet(new TrapezoidalFunction(83, 83, 200, 350), new ContinuousSet(83, 350)), "Wilks-score");
@@ -117,6 +122,26 @@ public class Data {
         List<Label> goodliftLabels = new ArrayList<>(List.of(begginerGoodlift, intermediateGoodlift, advancedGoodlift, eliteGoodlift));
         LinguisticVariable goodlift = new LinguisticVariable("Goodlift-level", goodliftLabels, new ContinuousSet(15, 120));
 
-        
+        //zmienne ligwistyczne
+        linguisticVariables = new ArrayList<>();
+        linguisticVariables.addAll((new ArrayList<>(List.of(age, weight, squat, benchpress, deadlift, total, dots, wilks, glossbrenner, goodlift))));
+
+        //kwantyfikatory wzgledne
+        RelativeQuantifier almostNone = new RelativeQuantifier("Almost none", new FuzzySet(new TrapezoidalFunction(0, 0, 0.04, 0.16), new ContinuousSet(0, 0.16)));
+        RelativeQuantifier some = new RelativeQuantifier("Some", new FuzzySet(new TrapezoidalFunction(0.12, 0.16, 0.32, 0.4), new ContinuousSet(0.12, 0.4)));
+        RelativeQuantifier aboutHalf = new RelativeQuantifier("About half", new FuzzySet(new TrapezoidalFunction(0.32, 0.44, 0.56, 0.68), new ContinuousSet(0.32, 0.68)));
+        RelativeQuantifier many = new RelativeQuantifier("Many", new FuzzySet(new TrapezoidalFunction(0.6, 0.68, 0.84, 0.88), new ContinuousSet(0.6, 0.88)));
+        RelativeQuantifier almostAll = new RelativeQuantifier("Almost all", new FuzzySet(new TrapezoidalFunction(0.84, 0.96, 1, 1), new ContinuousSet(0.84, 1)));
+        relativeQuantifiers = new ArrayList<>();
+        relativeQuantifiers.addAll((new ArrayList<>(List.of(almostNone, some, aboutHalf, many, almostAll))));
+
+        //kwantyfikatory absolutne
+        AbsoluteQuantifier farBelow1000 = new AbsoluteQuantifier("Far below 1000", new FuzzySet(new TrapezoidalFunction(0, 0, 600, 1000), new ContinuousSet(0, 1000)));
+        AbsoluteQuantifier around2000 = new AbsoluteQuantifier("Around 2000", new FuzzySet(new GaussianFunction(2000, 500, 500, 3500), new ContinuousSet(500, 3500)));
+        AbsoluteQuantifier from3000to6000 = new AbsoluteQuantifier("From 3000 to 6000", new FuzzySet(new TrapezoidalFunction(2700, 3000, 6000, 6300), new ContinuousSet(2700, 6300)));
+        AbsoluteQuantifier around7000 = new AbsoluteQuantifier("Around 7000", new FuzzySet(new GaussianFunction(7000, 500, 5500, 8500), new ContinuousSet(5500, 8500)));
+        AbsoluteQuantifier muchMoreThan8000 = new AbsoluteQuantifier("Much more than 8000", new FuzzySet(new TrapezoidalFunction(7900, 8400, 12000, 12000), new ContinuousSet(7900, 12000)));
+        absoluteQuantifiers = new ArrayList<>();
+        absoluteQuantifiers.addAll((new ArrayList<>(List.of(farBelow1000, around2000, from3000to6000, around7000, muchMoreThan8000))));
     }
 }
