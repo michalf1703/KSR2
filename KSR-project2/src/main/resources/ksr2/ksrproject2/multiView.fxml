@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ksr2.ksrproject2.multiView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ksr2.ksrproject2.view.multiView">
     <children>
         <Text layoutX="411.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantifier" />
         <ChoiceBox fx:id="quantifierChoiceBox" layoutX="362.0" layoutY="103.0" prefWidth="150.0" />

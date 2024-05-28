@@ -1,4 +1,4 @@
-package ksr2.ksrproject2;
+package ksr2.ksrproject2.view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
