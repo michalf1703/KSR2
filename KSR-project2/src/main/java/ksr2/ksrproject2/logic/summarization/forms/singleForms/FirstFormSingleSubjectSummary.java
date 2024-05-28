@@ -3,6 +3,7 @@ package ksr2.ksrproject2.logic.summarization.forms.singleForms;
 
 import ksr2.ksrproject2.logic.model.PowerliftingResult;
 import ksr2.ksrproject2.logic.summarization.Label;
+import ksr2.ksrproject2.logic.summarization.MeasureWeights;
 import ksr2.ksrproject2.logic.summarization.Quantifier;
 import ksr2.ksrproject2.logic.summarization.AbsoluteQuantifier;
 
@@ -11,12 +12,12 @@ import java.util.Locale;
 import java.util.Map;
 
 public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
-    private final Map<String, Double> weights;
+    private final MeasureWeights weights;
     private final Quantifier quantifier;
     private final List<Label> summarizers;
     private final List<PowerliftingResult> subject;
 
-    public FirstFormSingleSubjectSummary(Map<String, Double> weights, Quantifier quantifier, List<Label> summarizers, List<PowerliftingResult> subject) {
+    public FirstFormSingleSubjectSummary(MeasureWeights weights, Quantifier quantifier, List<Label> summarizers, List<PowerliftingResult> subject) {
         this.weights = weights;
         this.quantifier = quantifier;
         this.summarizers = summarizers;
@@ -27,7 +28,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public double getMainSummaryMeasure() {
         Map<String, Double> measures = calculateMeasures();
-        return measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.get(e.getKey())).sum();
+        return measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().size()).sum();
     }
     @Override
     public double getDegreeOfTruth_T1() {

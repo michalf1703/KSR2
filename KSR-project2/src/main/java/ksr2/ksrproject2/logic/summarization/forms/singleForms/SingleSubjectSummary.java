@@ -63,23 +63,23 @@ public interface SingleSubjectSummary {
         switch (l.getLinguisticVariableName()) {
             case "Age":
                 return result.getAge();
-            case "Body weight":
+            case "Weight":
                 return result.getBodyWeight();
-            case "Squat strenght level":
+            case "Squat-strenght-level":
                 return result.getSquatStrenghtLevel();
-            case "Benchpress strenght level":
+            case "Benchpress-strenght-level":
                 return result.getBenchpressStrenghtLevel();
-            case "Deadlift strenght level":
+            case "Deadlift-strenght-level":
                 return result.getDeadliftStrenghtLevel();
-            case "Total powerlift strenght level":
+            case "Total-powerlift-strenght-level":
                 return result.getTotalPowerliftStrenghtLevel();
-            case "Dots level":
+            case "Dots-level":
                 return result.getDotsLevel();
-            case "Wilks level":
+            case "Wilks-score":
                 return result.getWilksLevel();
-            case "Glossbrenner level":
-                return result.getGoodliftLevel();
-            case "Goodlift level":
+            case "Glossbrenner-level":
+                return result.getGlossbrennerLevel();
+            case "Goodlift-level":
                 return result.getGoodliftLevel();
             default:
                 throw new IllegalStateException(String.format("Wrong label name: %s", l.getName()));
