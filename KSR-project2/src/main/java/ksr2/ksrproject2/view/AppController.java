@@ -32,9 +32,7 @@ public class AppController implements Initializable {
     private TableView<SingleSubjectSummaryDTO> summaryTable;
 
     @FXML
-    private TreeView<String> summarizersTreeView;
-    @FXML
-    private TreeView<String> qualifiersTreeView;
+    private TreeView<String> summarizersTreeView, qualifiersTreeView;
 
     @FXML
     private Button advancedUserPanelButton;
@@ -187,14 +185,56 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        sortByChoiceBox.getItems().addAll("squat-strenght-level");
         Data.initData();
+        sortByChoiceBox.getItems().addAll("T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "mainT");
+        sortByChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortBtn_onAction());
         fillQualifiersTreeView();
         fillSummarizersTreeView();
         initSummaryTableColumns();
         fillWeights();
-
-
+    }
+    @FXML
+    private void sortBtn_onAction() {
+        String selectedMeasure = sortByChoiceBox.getValue();
+        switch (selectedMeasure) {
+            case "T1":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getDegreeOfTruth_T1).reversed());
+                break;
+            case "T2":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getDegreeOfImprecision_T2).reversed());
+                break;
+            case "T3":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getDegreeOfCovering_T3).reversed());
+                break;
+            case "T4":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getDegreeOfAppropriateness_T4).reversed());
+                break;
+            case "T5":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getDegreeOfSummary_T5).reversed());
+                break;
+            case "T6":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getDegreeOfQuantifierImprecision_T6).reversed());
+                break;
+            case "T7":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getDegreeOfQuantifierCardinality_T7).reversed());
+                break;
+            case "T8":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getDegreeOfSummarizerCardinality_T8).reversed());
+                break;
+            case "T9":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getDegreeOfQualifierImprecision_T9).reversed());
+                break;
+            case "T10":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getDegreeOfQualifierCardinality_T10).reversed());
+                break;
+            case "T11":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getLengthOfQualifier_T11).reversed());
+                break;
+            case "mainT":
+                summaries.sort(Comparator.comparing(SingleSubjectSummary::getMainSummaryMeasure).reversed());
+                break;
+        }
+        fillSummaryTable();
     }
     private MeasureWeights retrieveWeights() {
         HashMap<String, Double> map = new HashMap<>();
