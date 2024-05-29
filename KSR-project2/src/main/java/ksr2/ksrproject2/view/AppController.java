@@ -299,14 +299,23 @@ public class AppController implements Initializable {
 
         Set<String> temp1 = new HashSet<>();
         Set<String> temp2 = new HashSet<>();
-        ObservableSet<String> checkedQuantifiers = FXCollections.observableSet(temp1);
+        Set<String> temp3 = new HashSet<>();
+        ObservableSet<String> checkedQualifiers = FXCollections.observableSet(temp1);
         ObservableSet<String> checkedSummarizers = FXCollections.observableSet(temp2);
-        findCheckedItems((CheckBoxTreeItem<?>) qualifiersTreeView.getRoot(), checkedQuantifiers);
+        ObservableSet<String> checkedQuantifiers = FXCollections.observableSet(temp3);
+        findCheckedItems((CheckBoxTreeItem<?>) qualifiersTreeView.getRoot(), checkedQualifiers);
         findCheckedItems((CheckBoxTreeItem<?>) summarizersTreeView.getRoot(), checkedSummarizers);
+        findCheckedItems((CheckBoxTreeItem<?>) quantifiersTreeView.getRoot(), checkedQuantifiers);
+
+        // Print the results of findCheckedItems()
+        System.out.println("Checked qualifiers: " + checkedQualifiers);
+        System.out.println("Checked summarizers: " + checkedSummarizers);
+        System.out.println("Checked quantifiers: " + checkedQuantifiers);
 
         summaries.clear();
         List<ksr2.ksrproject2.logic.summarization.Label> qualifiers = new ArrayList<>();
         List<ksr2.ksrproject2.logic.summarization.Label> summarizers = new ArrayList<>();
+        List<Quantifier> quantifiers = new ArrayList<>();
 
         for (String chosenOption : temp1) {
             String[] names = chosenOption.split(";");
@@ -316,18 +325,38 @@ public class AppController implements Initializable {
             String[] names = chosenOption.split(";");
             summarizers.add(findLabel(names[0], names[1]));
         }
+        for (String chosenOption : temp3) {
+            quantifiers.add(findQuantifier(chosenOption));
+        }
+
+        if (quantifiers.isEmpty()) {
+            System.out.println("No quantifiers selected. Please select at least one quantifier.");
+            return;
+        }
 
         if (qualifiers.size() == 0) { // First form.
-            List<Quantifier> quantifiers = new ArrayList<>();
-            quantifiers.addAll(Data.relativeQuantifiers);
-            quantifiers.addAll(Data.absoluteQuantifiers);
             generateSummariesFirstForm(quantifiers, qualifiers, summarizers);
         } else { // Second form.
-            List<Quantifier> quantifiers = new ArrayList<>(Data.relativeQuantifiers);
             generateSummariesSecondForm(quantifiers, qualifiers, summarizers);
         }
 
         fillSummaryTable();
+    }
+    private Quantifier findQuantifier(String name) {
+        String quantifierName = name.replace("Quantifiers;", "");
+
+        for (Quantifier quantifier : Data.relativeQuantifiers) {
+            if (quantifier.getName().equals(quantifierName)) {
+                return quantifier;
+            }
+        }
+        for (Quantifier quantifier : Data.absoluteQuantifiers) {
+            if (quantifier.getName().equals(quantifierName)) {
+                return quantifier;
+            }
+        }
+        System.out.println("Could not find quantifier with name: " + quantifierName);
+        return null;
     }
     private void generateSummariesFirstForm(List<Quantifier> quantifiers, List<ksr2.ksrproject2.logic.summarization.Label> qualifiers,
                                             List<ksr2.ksrproject2.logic.summarization.Label> summarizers) {

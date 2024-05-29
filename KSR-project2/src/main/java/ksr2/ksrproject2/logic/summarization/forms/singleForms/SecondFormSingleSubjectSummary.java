@@ -2,10 +2,7 @@ package ksr2.ksrproject2.logic.summarization.forms.singleForms;
 
 import ksr2.ksrproject2.logic.calculation.sets.FuzzySet;
 import ksr2.ksrproject2.logic.model.PowerliftingResult;
-import ksr2.ksrproject2.logic.summarization.AbsoluteQuantifier;
-import ksr2.ksrproject2.logic.summarization.Label;
-import ksr2.ksrproject2.logic.summarization.MeasureWeights;
-import ksr2.ksrproject2.logic.summarization.RelativeQuantifier;
+import ksr2.ksrproject2.logic.summarization.*;
 
 import java.util.List;
 import java.util.Locale;
