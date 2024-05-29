@@ -32,10 +32,12 @@ public class AppController implements Initializable {
     private TableView<SingleSubjectSummaryDTO> summaryTable;
 
     @FXML
-    private TreeView<String> summarizersTreeView, qualifiersTreeView;
+    private TreeView<String> summarizersTreeView, qualifiersTreeView, quantifiersTreeView;
 
     @FXML
     private Button advancedUserPanelButton;
+    @FXML
+    private TextField numberOfSummariesField;
 
     @FXML ChoiceBox<String> sortByChoiceBox;
 
@@ -49,7 +51,7 @@ public class AppController implements Initializable {
     @FXML
     void onAdvancedUserPanelButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("editPanel-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ksr2/ksrproject2/editPanel-view.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -66,7 +68,7 @@ public class AppController implements Initializable {
     @FXML
     void onMultiSubjectButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("multiView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ksr2/ksrproject2/multiView.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -79,9 +81,23 @@ public class AppController implements Initializable {
         }
 
     }
+    private void fillQuantifiersTreeView() {
+        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Quantifiers");
+        root.setExpanded(true);
+        for (Quantifier quantifier : Data.relativeQuantifiers) {
+            CheckBoxTreeItem<String> quantifierTreeItem = new CheckBoxTreeItem<>(quantifier.getName());
+            root.getChildren().add(quantifierTreeItem);
+        }
+        for (Quantifier quantifier : Data.absoluteQuantifiers) {
+            CheckBoxTreeItem<String> quantifierTreeItem = new CheckBoxTreeItem<>(quantifier.getName());
+            root.getChildren().add(quantifierTreeItem);
+        }
+        quantifiersTreeView.setRoot(root);
+        quantifiersTreeView.setCellFactory(CheckBoxTreeCell.forTreeView());
+    }
 
     private void fillQualifiersTreeView() {
-        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Kwalifikatory");
+        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Qualifiers");
         root.setExpanded(true);
         for (LinguisticVariable var : Data.linguisticVariables) {
             CheckBoxTreeItem<String> variableTreeItem = new CheckBoxTreeItem<>(var.getName());
@@ -97,7 +113,7 @@ public class AppController implements Initializable {
     }
 
     private void fillSummarizersTreeView() {
-        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Sumaryzatory");
+        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Summary");
         root.setExpanded(true);
         for (LinguisticVariable var : Data.linguisticVariables) {
             CheckBoxTreeItem<String> variableTreeItem = new CheckBoxTreeItem<>(var.getName());
@@ -114,7 +130,7 @@ public class AppController implements Initializable {
     @FXML
     private void initSummaryTableColumns() {
         // Create new columns
-        TableColumn<SingleSubjectSummaryDTO, String> summaryColumn = new TableColumn<>("Podsumowanie");
+        TableColumn<SingleSubjectSummaryDTO, String> summaryColumn = new TableColumn<>("Summarization");
         summaryColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTextValue()));
         summaryColumn.setPrefWidth(500);
 
@@ -190,6 +206,7 @@ public class AppController implements Initializable {
         sortByChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortBtn_onAction());
         fillQualifiersTreeView();
         fillSummarizersTreeView();
+        fillQuantifiersTreeView();
         initSummaryTableColumns();
         fillWeights();
     }
@@ -424,7 +441,14 @@ public class AppController implements Initializable {
 
     private void fillSummaryTable() {
         ArrayList<SingleSubjectSummaryDTO> summariesDTO = new ArrayList<>();
-        for (SingleSubjectSummary summary : summaries) {
+        int numberOfSummaries = summaries.size(); // default to all summaries
+
+        if (!numberOfSummariesField.getText().isEmpty()) {
+            numberOfSummaries = Integer.parseInt(numberOfSummariesField.getText());
+        }
+
+        for (int i = 0; i < numberOfSummaries && i < summaries.size(); i++) {
+            SingleSubjectSummary summary = summaries.get(i);
             summariesDTO.add(new SingleSubjectSummaryDTO(
                     summary.toString(),
                     summary.getMainSummaryMeasure(),

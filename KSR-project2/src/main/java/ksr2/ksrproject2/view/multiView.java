@@ -20,7 +20,7 @@ public class multiView {
     @FXML
     void onAdvancedUserPanelButton(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("editPanel-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ksr2/ksrproject2/editPanel-view.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -36,7 +36,7 @@ public class multiView {
     @FXML
     void onSingleSubjectSummary(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("app-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ksr2/ksrproject2/app-view.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);

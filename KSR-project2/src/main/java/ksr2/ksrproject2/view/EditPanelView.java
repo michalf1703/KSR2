@@ -40,7 +40,7 @@ public class EditPanelView {
     @FXML
     void onReturnToMainPage(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("app-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ksr2/ksrproject2/app-view.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
