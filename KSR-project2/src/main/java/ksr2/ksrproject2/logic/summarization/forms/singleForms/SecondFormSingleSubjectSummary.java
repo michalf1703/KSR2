@@ -1,5 +1,6 @@
 package ksr2.ksrproject2.logic.summarization.forms.singleForms;
 
+import ksr2.ksrproject2.logic.calculation.sets.DiscreteSet;
 import ksr2.ksrproject2.logic.calculation.sets.FuzzySet;
 import ksr2.ksrproject2.logic.model.PowerliftingResult;
 import ksr2.ksrproject2.logic.summarization.*;
@@ -7,6 +8,7 @@ import ksr2.ksrproject2.logic.summarization.*;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     private final MeasureWeights weights;
@@ -27,6 +29,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public double getMainSummaryMeasure() {
         Map<String, Double> measures = calculateMeasures();
+        System.out.println("main summary measure:" + measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().size()).sum());
         return measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().size()).sum();
     }
 
@@ -43,6 +46,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
       if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
           m = 1;
       }
+      System.out.println("T1:" + quantifier.getFuzzySet().getMembershipDegree(r / m));
       return quantifier.getFuzzySet().getMembershipDegree(r / m);
     }
 
@@ -120,11 +124,10 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     public double getDegreeOfSummarizerCardinality_T8() {
         double multiply = 1.0;
         for (Label summarizer : summarizers) {
-            multiply = multiply * subject.stream()
-                    .map(c -> fieldForLabel(summarizer, c))
-                    .mapToDouble(summarizer.getFuzzySet()::getCardinality)
-                    .average()
-                    .orElse(0.0);
+            List<Double> fieldsForLabel = subject.stream().map(c -> fieldForLabel(summarizer, c)).collect(Collectors.toList());
+            FuzzySet fuzzySetForFields = new FuzzySet(summarizer.getFuzzySet().getMembershipFunction(), new DiscreteSet(fieldsForLabel));
+            double cardinality = fuzzySetForFields.getCardinality();
+            multiply *= cardinality / subject.size();
         }
         multiply = Math.pow(multiply, 1.0 / summarizers.size());
         return 1.0 - multiply;

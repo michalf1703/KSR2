@@ -4,9 +4,9 @@ module ksr.ksrproject {
     requires java.xml;
     requires org.apache.commons.io;
     requires java.desktop;
-    requires org.jfree.jfreechart;
     requires javafx.graphics;
     requires lombok;
+    requires jFuzzyLogic;
 
     opens ksr2.ksrproject2 to javafx.fxml;
     exports ksr2.ksrproject2;

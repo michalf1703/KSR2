@@ -10,14 +10,7 @@ import java.util.Map;
 public interface SingleSubjectSummary {
 
 
-    default Map<String, Double> getWeights() {
-        Map<String, Double> weights = new HashMap<>();
-        return weights;
-    }
 
-    default boolean areWeightsCorrect() {
-        return getWeights().values().stream().mapToDouble(Double::doubleValue).sum() == 1.0;
-    }
 
     default Map<String, Double> calculateMeasures() {
         Map<String, Double> measures = new HashMap<>();

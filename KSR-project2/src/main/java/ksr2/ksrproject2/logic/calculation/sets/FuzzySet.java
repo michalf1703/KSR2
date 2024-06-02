@@ -91,4 +91,9 @@ public class FuzzySet {
     public double getCardinality(Double aDouble) {
         return getMembershipDegree(aDouble);
     }
+    public double getCardinality(List<Double> databaseValues) {
+        return databaseValues.stream()
+                .mapToDouble(this::getMembershipDegree)
+                .sum();
+    }
 }

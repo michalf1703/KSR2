@@ -308,9 +308,9 @@ public class AppController implements Initializable {
         findCheckedItems((CheckBoxTreeItem<?>) quantifiersTreeView.getRoot(), checkedQuantifiers);
 
         // Print the results of findCheckedItems()
-        System.out.println("Checked qualifiers: " + checkedQualifiers);
-        System.out.println("Checked summarizers: " + checkedSummarizers);
-        System.out.println("Checked quantifiers: " + checkedQuantifiers);
+       // System.out.println("Checked qualifiers: " + checkedQualifiers);
+       // System.out.println("Checked summarizers: " + checkedSummarizers);
+       // System.out.println("Checked quantifiers: " + checkedQuantifiers);
 
         summaries.clear();
         List<ksr2.ksrproject2.logic.summarization.Label> qualifiers = new ArrayList<>();

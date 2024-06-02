@@ -1,16 +1,12 @@
 package ksr2.ksrproject2;
 
-import ksr2.ksrproject2.logic.utilis.DetalisReader;
-import ksr2.ksrproject2.logic.model.PowerliftingResult;
-
-import java.util.List;
+import ksr2.ksrproject2.logic.calculation.membershipFunctions.TrapezoidalFunction;
 
 class Main {
     public static void main(String[] args) {
-        List<PowerliftingResult> results = DetalisReader.readData();
-
-        for (PowerliftingResult result : results) {
-            System.out.println(result.toString());
-        }
+        TrapezoidalFunction function = new TrapezoidalFunction(6, 6, 16, 23);
+        TrapezoidalFunctionPlot plot = new TrapezoidalFunctionPlot(function);
+        plot.pack();
+        plot.setVisible(true);
     }
 }

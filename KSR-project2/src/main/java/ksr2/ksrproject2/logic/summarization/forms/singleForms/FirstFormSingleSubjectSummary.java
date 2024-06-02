@@ -10,6 +10,7 @@ import ksr2.ksrproject2.logic.summarization.AbsoluteQuantifier;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     private final MeasureWeights weights;
@@ -28,7 +29,10 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public double getMainSummaryMeasure() {
         Map<String, Double> measures = calculateMeasures();
-        return measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().size()).sum();
+        //System.out.println(measures);
+        //System.out.println(weights.getWeights());
+        System.out.println("main summary measure:" + measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().size()).sum());
+        return measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().get(e.getKey())).sum();
     }
     @Override
     public double getDegreeOfTruth_T1() {
@@ -40,6 +44,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
         if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
             m = 1;
         } else m = subject.size();
+        System.out.println("T1" + quantifier.getFuzzySet().getMembershipDegree(r / m));
         return quantifier.getFuzzySet().getMembershipDegree(r / m);
     }
 
@@ -57,6 +62,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
 
         double geometricMean = Math.pow(productOfImprecision, 1.0 / numberOfSummarizers);
 
+        System.out.println("T2" + (1 - geometricMean));
         return 1 - geometricMean;
     }
 
@@ -73,6 +79,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
         if (t == 0) {
             return 0;
         }
+        System.out.println("T3" + (double) t / subject.size());
         return (double) t / subject.size();
     }
 
@@ -88,12 +95,14 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
             }
             multiply *= (r / subject.size());
         }
+        System.out.println("T4" + Math.abs(multiply - getDegreeOfCovering_T3()));
         return Math.abs(multiply - getDegreeOfCovering_T3());
     }
 
     @Override
     public double getDegreeOfSummary_T5() {
-        return 2 * Math.pow(0.5,summarizers.size());
+        System.out.println("T5" + 2 * Math.pow(0.5, summarizers.size()));
+    return 2 * Math.pow(0.5,summarizers.size());
     }
 
 
@@ -104,7 +113,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
         if (quantifier instanceof AbsoluteQuantifier) {
             result /= subject.size();
         }
-
+System.out.println("T6" + result);
         return result;
     }
 
@@ -116,23 +125,20 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
         if (quantifier instanceof AbsoluteQuantifier) {
             universeSize = subject.size();
         }
-
+        System.out.println("T7" + (1 - (cardinality / universeSize)));
         return 1 - (cardinality / universeSize);
     }
 
 
     @Override
     public double getDegreeOfSummarizerCardinality_T8() {
-        double productOfCardinalities = 1.0;
-
+        double multiply = 1.0;
         for (Label summarizer : summarizers) {
-            double cardinality = summarizer.getFuzzySet().getCardinality();
-            productOfCardinalities *= cardinality;
+            multiply = multiply * (summarizer.getFuzzySet().getCardinality((List<Double>) subject.stream().map(c -> fieldForLabel(summarizer, c)).collect(Collectors.toList())) / subject.size());
         }
-
-        double geometricMean = Math.pow(productOfCardinalities, 1.0 / summarizers.size());
-
-        return 1 - geometricMean;
+        multiply = Math.pow(multiply, 1.0 / summarizers.size());
+        System.out.println("T8" + (1 - multiply));
+        return 1.0 - multiply;
     }
 
     @Override
