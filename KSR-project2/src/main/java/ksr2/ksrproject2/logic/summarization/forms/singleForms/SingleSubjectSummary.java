@@ -10,8 +10,6 @@ import java.util.Map;
 public interface SingleSubjectSummary {
 
 
-
-
     default Map<String, Double> calculateMeasures() {
         Map<String, Double> measures = new HashMap<>();
         measures.put("T1", getDegreeOfTruth_T1());

@@ -29,8 +29,11 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public double getMainSummaryMeasure() {
         Map<String, Double> measures = calculateMeasures();
-        System.out.println("main summary measure:" + measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().size()).sum());
-        return measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().size()).sum();
+        System.out.println(measures);
+        System.out.println(weights.getWeights());
+        double summaryMeasure = measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().get(e.getKey())).sum();
+        System.out.println("main summary measure:" + summaryMeasure);
+        return summaryMeasure;
     }
 
   public double getDegreeOfTruth_T1() {
@@ -46,6 +49,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
       if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
           m = 1;
       }
+      System.out.println("m:" + m);
       System.out.println("T1:" + quantifier.getFuzzySet().getMembershipDegree(r / m));
       return quantifier.getFuzzySet().getMembershipDegree(r / m);
     }
@@ -130,6 +134,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
             multiply *= cardinality / subject.size();
         }
         multiply = Math.pow(multiply, 1.0 / summarizers.size());
+        System.out.println("T8:" + (1.0 - multiply));
         return 1.0 - multiply;
     }
 
