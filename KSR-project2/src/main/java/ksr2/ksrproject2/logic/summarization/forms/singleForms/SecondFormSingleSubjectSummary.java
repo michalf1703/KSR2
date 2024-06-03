@@ -36,22 +36,30 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
         return summaryMeasure;
     }
 
-  public double getDegreeOfTruth_T1() {
-      double r = 0.0;
-      double m = 0.0;
+    public double getDegreeOfTruth_T1() {
+        double r = 0.0;
+        double m = 0.0;
 
-      for (PowerliftingResult result : subject) {
-          double intersectedQualifiers = and(qualifiers, result);
-          r += Math.min(and(summarizers, result), intersectedQualifiers);
-          m += intersectedQualifiers;
-      }
+        for (PowerliftingResult result : subject) {
+            double intersectedQualifiers = and(qualifiers, result);
+            r += Math.min(and(summarizers, result), intersectedQualifiers);
+            m += intersectedQualifiers;
+        }
 
-      if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
-          m = 1;
-      }
-      System.out.println("m:" + m);
-      System.out.println("T1:" + quantifier.getFuzzySet().getMembershipDegree(r / m));
-      return quantifier.getFuzzySet().getMembershipDegree(r / m);
+        if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
+            m = 1;
+        }
+
+        double divisionResult = r / m;
+        if (Double.isNaN(divisionResult)) {
+            System.out.println("m:" + m);
+            System.out.println("T1: 0.0 (NaN encountered)");
+            return 0.0;
+        } else {
+            System.out.println("m:" + m);
+            System.out.println("T1:" + quantifier.getFuzzySet().getMembershipDegree(divisionResult));
+            return quantifier.getFuzzySet().getMembershipDegree(divisionResult);
+        }
     }
 
     public double getDegreeOfImprecision_T2() {
@@ -136,31 +144,26 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
         return 1.0 - multiply;
     }
 
+    @Override
     public double getDegreeOfQualifierImprecision_T9() {
         double multiply = 1.0;
         for (Label qualifier : qualifiers) {
-            multiply = multiply * subject.stream()
-                    .map(c -> fieldForLabel(qualifier, c))
-                    .mapToDouble(qualifier.getFuzzySet()::getDegreeOfFuzziness)
-                    .average()
-                    .orElse(0.0);
+            multiply = multiply * qualifier.getFuzzySet().getDegreeOfFuzziness(subject.stream().map(c -> fieldForLabel(qualifier, c)).collect(Collectors.toList()));
         }
         double res = Math.pow(multiply, 1.0 / qualifiers.size());
         return 1.0 - res;
     }
 
+    @Override
     public double getDegreeOfQualifierCardinality_T10() {
-        double multiply = 1.0;
+        double multiply = 1;
         for (Label qualifier : qualifiers) {
-            multiply = multiply * subject.stream()
-                    .map(c -> fieldForLabel(qualifier, c))
-                    .mapToDouble(qualifier.getFuzzySet()::getCardinality)
-                    .average()
-                    .orElse(0.0);
+            multiply = multiply * (qualifier.getFuzzySet().getCardinality(subject.stream().map(c -> fieldForLabel(qualifier, c)).collect(Collectors.toList())) / subject.size());
         }
         multiply = Math.pow(multiply, 1.0 / qualifiers.size());
         return 1.0 - multiply;
     }
+
     public double getLengthOfQualifier_T11() {
 
         return 2.0 * Math.pow(0.5, qualifiers.size());
