@@ -41,6 +41,18 @@ public class FuzzySet {
         } else {
             return new ContinuousSet(membershipFunction.getLeftBoundary(), membershipFunction.getRightBoundary());
         }
+
+    }
+
+    public double getDegreeOfFuzziness(List<Double> databaseValues) {
+        return getSupport(databaseValues).getSize() / databaseValues.size();
+    }
+
+    public ClassicSet getSupport(List<Double> databaseValues) {
+        List<Double> list = databaseValues.stream()
+                .filter(val -> getMembershipDegree(val) > 0)
+                .collect(Collectors.toList());
+        return new DiscreteSet(list);
     }
 
 //alfaCut - zbior klasyczny, uogólnienie definicji nośnika , jeśli za alfa przyjmiemy 0 to bedzie nośnik
@@ -61,6 +73,7 @@ public class FuzzySet {
     //stopień rozmytości - określa jak bardzo zbiór jest rozmyty w kontekście swojego uniwersum,
     //stopień rozmytości potrzebny do T2 (stopień rozmycia)
     public double getDegreeOfFuzziness() {
+
         return getSupport().getSize() / universeOfDiscourse.getSize();
     }
 

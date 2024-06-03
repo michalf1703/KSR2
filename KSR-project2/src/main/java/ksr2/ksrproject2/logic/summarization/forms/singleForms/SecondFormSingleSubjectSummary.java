@@ -57,14 +57,12 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     public double getDegreeOfImprecision_T2() {
         double multiply = 1.0;
         for (Label summarizer : summarizers) {
-            multiply = multiply * subject.stream()
-                    .map(c -> fieldForLabel(summarizer, c))
-                    .mapToDouble(summarizer.getFuzzySet()::getDegreeOfFuzziness)
-                    .reduce(1, (a, b) -> a * b);
+            multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness(subject.stream().map(c -> fieldForLabel(summarizer, c)).collect(Collectors.toList()));
         }
         double res = Math.pow(multiply, 1.0 / summarizers.size());
         return 1.0 - res;
     }
+
 
     public double getDegreeOfCovering_T3() {
         int t = 0;

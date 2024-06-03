@@ -1,6 +1,7 @@
 package ksr2.ksrproject2.logic.summarization.forms.singleForms;
 
 
+import ksr2.ksrproject2.logic.calculation.sets.FuzzySet;
 import ksr2.ksrproject2.logic.model.PowerliftingResult;
 import ksr2.ksrproject2.logic.summarization.Label;
 import ksr2.ksrproject2.logic.summarization.MeasureWeights;
@@ -43,7 +44,8 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
         }
         if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
             m = 1;
-        } else m = subject.size();
+        }
+        else m = subject.size();
         System.out.println("T1" + quantifier.getFuzzySet().getMembershipDegree(r / m));
         return quantifier.getFuzzySet().getMembershipDegree(r / m);
     }
@@ -51,21 +53,13 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
 
     @Override
     public double getDegreeOfImprecision_T2() {
-
-        double productOfImprecision = 1.0;
-        int numberOfSummarizers = summarizers.size();
-
+        double multiply = 1.0;
         for (Label summarizer : summarizers) {
-            double degreeOfFuzziness = summarizer.getFuzzySet().getDegreeOfFuzziness();
-            productOfImprecision *= degreeOfFuzziness;
+            multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness(subject.stream().map(c -> fieldForLabel(summarizer, c)).collect(Collectors.toList()));
         }
-
-        double geometricMean = Math.pow(productOfImprecision, 1.0 / numberOfSummarizers);
-
-        System.out.println("T2" + (1 - geometricMean));
-        return 1 - geometricMean;
+        double res = Math.pow(multiply, 1.0 / summarizers.size());
+        return 1.0 - res;
     }
-
 
     @Override
     public double getDegreeOfCovering_T3() {
@@ -108,25 +102,23 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
 
     @Override
     public double getDegreeOfQuantifierImprecision_T6() {
-        double result = quantifier.getFuzzySet().getDegreeOfFuzziness();
-
-        if (quantifier instanceof AbsoluteQuantifier) {
-            result /= subject.size();
+        FuzzySet fs = quantifier.getFuzzySet();
+        double measure = fs.getSupport().getSize();
+        if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
+            return 1.0 - (measure / subject.size());
+        } else {
+            return 1.0 - measure;
         }
-System.out.println("T6" + result);
-        return result;
     }
 
     @Override
     public double getDegreeOfQuantifierCardinality_T7() {
-        double cardinality = quantifier.getFuzzySet().getCardinality();
-        double universeSize = 1;
-
-        if (quantifier instanceof AbsoluteQuantifier) {
-            universeSize = subject.size();
+        double measure = quantifier.getFuzzySet().getCardinality();
+        if (quantifier.getClass().equals(AbsoluteQuantifier.class)) {
+            return 1.0 - (measure / subject.size());
+        } else {
+            return 1.0 - measure;
         }
-        System.out.println("T7" + (1 - (cardinality / universeSize)));
-        return 1 - (cardinality / universeSize);
     }
 
 
