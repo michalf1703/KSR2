@@ -32,9 +32,10 @@ public class PowerliftingResult {
         this.goodliftLevel = goodliftLevel;
         if (bodyWeight > 120) {
             this.weightClass = "Weight class 120+";
-        }
-        if (bodyWeight > 86 && bodyWeight <= 100) {
+        } else if (bodyWeight > 86 && bodyWeight <= 100) {
             this.weightClass = "Weight class 86-100";
+        } else {
+            this.weightClass = "Other weight class";
         }
     }
 

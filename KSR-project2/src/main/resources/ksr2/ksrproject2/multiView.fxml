@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1204.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ksr2.ksrproject2.view.multiView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1204.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ksr2.ksrproject2.view.MultiAppController">
     <children>
         <Text layoutX="370.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Multi subject summary " textAlignment="CENTER">
             <font>
                 <Font name="Alef Regular" size="22.0" />
             </font>
         </Text>
-        <Button fx:id="goToMultiSubjectButton" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#onSingleSubjectSummary" text="Go to single subject summary" />
-        <Button fx:id="advancedUserPanelButton" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#onAdvancedUserPanelButton" text="Advanced user panel" />
-      <Text layoutX="705.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First subject" />
-      <ChoiceBox fx:id="firstSubject_CB" layoutX="662.0" layoutY="204.0" prefWidth="150.0" />
-      <Text layoutX="902.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second subject" />
-      <ChoiceBox fx:id="secondSubject_CB" layoutX="867.0" layoutY="204.0" prefWidth="150.0" />
+        <Button fx:id="goToSingleSubjectButton" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" text="Go to single subject summary" />
+        <Button layoutX="14.0" layoutY="46.0" mnemonicParsing="false" text="Advanced user panel" />
+        <Text layoutX="705.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First subject" />
+        <ComboBox fx:id="firstSubject_CB" layoutX="662.0" layoutY="204.0" prefWidth="150.0" />
+        <Text layoutX="902.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second subject" />
+        <ComboBox fx:id="secondSubject_CB" layoutX="867.0" layoutY="204.0" prefWidth="150.0" />
       <Text layoutX="449.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qualifiers" />
       <Text layoutX="131.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summary" />
       <TreeView fx:id="qualifiersTreeView" layoutX="328.0" layoutY="138.0" prefHeight="346.0" prefWidth="292.0" />
       <TreeView fx:id="summarizersTreeView" layoutX="26.0" layoutY="138.0" prefHeight="346.0" prefWidth="292.0" />
-      <Button layoutX="352.0" layoutY="526.0" mnemonicParsing="false" text="Generate" />
+      <Button layoutX="352.0" layoutY="526.0" mnemonicParsing="false" onAction="#generateButton_OnAction" text="Generate" />
       <TableView fx:id="summaryTable" layoutX="2.0" layoutY="587.0" prefHeight="200.0" prefWidth="1058.0" />
     </children>
 </Pane>
