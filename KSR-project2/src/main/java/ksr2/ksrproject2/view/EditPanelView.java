@@ -52,5 +52,5 @@ public class EditPanelView {
             e.printStackTrace();
         }
     }
-    // Tutaj umieść metody obsługi zdarzeń dla przycisków i innych elementów interfejsu użytkownika
+
 }
