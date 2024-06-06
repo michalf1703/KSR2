@@ -151,7 +151,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" powerligting results are/have got ");
+        sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" competitors are/have got ");
         for (int i = 0; i < summarizers.size(); i++) {
             Label summarizer = summarizers.get(i);
             sb.append(summarizer.getName().toUpperCase(Locale.ROOT)).append(" ").append(summarizer.getLinguisticVariableName().toLowerCase(Locale.ROOT));

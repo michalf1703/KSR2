@@ -5,6 +5,7 @@ import ksr2.ksrproject2.logic.summarization.Label;
 import ksr2.ksrproject2.logic.summarization.Quantifier;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ThirdFormMultiSubjectSummary implements MultiSubjectSummary {
 
@@ -24,18 +25,39 @@ public class ThirdFormMultiSubjectSummary implements MultiSubjectSummary {
 
     @Override
     public double getDegreeOfTruthT1() {
-        return 0;
+
+        double nfSigmaFirstSubjIntersectionOfSummarizersWithQuaLifiers = Math.min(nfSigmaCount(subject1, summarizers), nfSigmaCount(subject1, qualifiers));
+        double nfSigmaFirstSubjSumarizers = nfSigmaCount(subject2, summarizers);
+        double m1 = subject1.size();
+        double m2 = subject2.size();
+
+        return quantifier.getFuzzySet().getMembershipDegree((nfSigmaFirstSubjIntersectionOfSummarizersWithQuaLifiers / m1) / ((nfSigmaFirstSubjIntersectionOfSummarizersWithQuaLifiers / m1) + (nfSigmaFirstSubjSumarizers / m2)));
     }
 
     @Override
     public String toString() {
-        return "ThirdFormMultiSubjectSummary{" +
-                "quantifier=" + quantifier +
-                ", summarizers=" + summarizers +
-                ", qualifiers=" + qualifiers +
-                ", detalis1=" + subject1 +
-                ", detalis2=" + subject2 +
-                '}';
+        String subjectName1 = subject1.get(0).getWeightClass();
+        String subjectName2 = subject2.get(0).getWeightClass();
+        StringBuilder sb = new StringBuilder();
+        sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" competitors in " + subjectName1).append(" which are/have ");
+        for (int i = 0; i < qualifiers.size(); i++) {
+            Label qualifier = qualifiers.get(i);
+            sb.append(qualifier.getName().toUpperCase(Locale.ROOT)).append(" ").append(qualifier.getLinguisticVariableName().toLowerCase(Locale.ROOT));
+            if (i + 1 < qualifiers.size()) {
+                sb.append(" and ");
+            }
+        }
+        sb.append(" compared to these ").append(" competitors in " + subjectName2);
+
+        sb.append(" are/have ");
+        for (int i = 0; i < summarizers.size(); i++) {
+            Label summarizer = summarizers.get(i);
+            sb.append(summarizer.getName().toUpperCase(Locale.ROOT)).append(" ").append(summarizer.getLinguisticVariableName().toLowerCase(Locale.ROOT));
+            if (i + 1 < summarizers.size()) {
+                sb.append(" and ");
+            }
+        }
+        return sb.toString();
     }
 
 }

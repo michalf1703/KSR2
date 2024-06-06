@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ksr2.ksrproject2.view.multiView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1204.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ksr2.ksrproject2.view.multiView">
     <children>
         <Text layoutX="370.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Multi subject summary " textAlignment="CENTER">
             <font>
@@ -17,15 +17,15 @@
         </Text>
         <Button fx:id="goToMultiSubjectButton" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#onSingleSubjectSummary" text="Go to single subject summary" />
         <Button fx:id="advancedUserPanelButton" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#onAdvancedUserPanelButton" text="Advanced user panel" />
-      <Text layoutX="568.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First subject" />
-      <ChoiceBox layoutX="531.0" layoutY="101.0" prefWidth="150.0" />
-      <Text layoutX="737.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second subject" />
-      <ChoiceBox layoutX="702.0" layoutY="101.0" prefWidth="150.0" />
-      <Text layoutX="89.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qualifiers" />
-      <Text layoutX="312.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summary" />
-      <TreeView fx:id="qualifiersTreeView" layoutX="14.0" layoutY="126.0" prefHeight="200.0" prefWidth="200.0" />
-      <TreeView fx:id="summarizersTreeView" layoutX="237.0" layoutY="126.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button layoutX="161.0" layoutY="355.0" mnemonicParsing="false" onAction="#generateButton_OnAction" text="Generate" />
-      <TableView fx:id="summaryTable" layoutX="14.0" layoutY="389.0" prefHeight="200.0" prefWidth="839.0" />
+      <Text layoutX="705.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First subject" />
+      <ChoiceBox fx:id="firstSubject_CB" layoutX="662.0" layoutY="204.0" prefWidth="150.0" />
+      <Text layoutX="902.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second subject" />
+      <ChoiceBox fx:id="secondSubject_CB" layoutX="867.0" layoutY="204.0" prefWidth="150.0" />
+      <Text layoutX="449.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qualifiers" />
+      <Text layoutX="131.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summary" />
+      <TreeView fx:id="qualifiersTreeView" layoutX="328.0" layoutY="138.0" prefHeight="346.0" prefWidth="292.0" />
+      <TreeView fx:id="summarizersTreeView" layoutX="26.0" layoutY="138.0" prefHeight="346.0" prefWidth="292.0" />
+      <Button layoutX="352.0" layoutY="526.0" mnemonicParsing="false" text="Generate" />
+      <TableView fx:id="summaryTable" layoutX="2.0" layoutY="587.0" prefHeight="200.0" prefWidth="1058.0" />
     </children>
 </Pane>

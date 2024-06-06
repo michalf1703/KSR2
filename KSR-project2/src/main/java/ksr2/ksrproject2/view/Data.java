@@ -141,7 +141,12 @@ public class Data {
         AbsoluteQuantifier from3000to6000 = new AbsoluteQuantifier("From 3000 to 6000", new FuzzySet(new TrapezoidalFunction(2700, 3000, 6000, 6300), new ContinuousSet(2700, 6300)));
         AbsoluteQuantifier around7000 = new AbsoluteQuantifier("Around 7000", new FuzzySet(new GaussianFunction(7000, 500, 5500, 8500), new ContinuousSet(5500, 8500)));
         AbsoluteQuantifier muchMoreThan8000 = new AbsoluteQuantifier("Much more than 8000", new FuzzySet(new TrapezoidalFunction(7900, 8400, 12000, 12000), new ContinuousSet(7900, 12000)));
+
+        //teraz dodany kwantyfikator
+        AbsoluteQuantifier upTo4000 = new AbsoluteQuantifier("Up to 4000", new FuzzySet(new TrapezoidalFunction(0, 0, 4000, 4000), new ContinuousSet(0, 12000)));
+        AbsoluteQuantifier muchLessThan4000 = new AbsoluteQuantifier("Much less than 4000", new FuzzySet(new TriangularFunction(0,0,4000), new ContinuousSet(0, 12000)));
+
         absoluteQuantifiers = new ArrayList<>();
-        absoluteQuantifiers.addAll((new ArrayList<>(List.of(farBelow1000, around2000, from3000to6000, around7000, muchMoreThan8000))));
+        absoluteQuantifiers.addAll((new ArrayList<>(List.of(farBelow1000, around2000, from3000to6000, around7000, muchMoreThan8000,upTo4000,muchLessThan4000))));
     }
 }

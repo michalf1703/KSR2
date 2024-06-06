@@ -172,7 +172,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" powerlifting results being/having ");
+        sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" competitors being/having ");
         for (int i = 0; i < qualifiers.size(); i++) {
             Label qualifier = qualifiers.get(i);
             sb.append(qualifier.getName().toUpperCase(Locale.ROOT)).append(" ").append(qualifier.getLinguisticVariableName().toLowerCase(Locale.ROOT));

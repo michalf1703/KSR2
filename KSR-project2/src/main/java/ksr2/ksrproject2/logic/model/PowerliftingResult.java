@@ -17,6 +17,7 @@ public class PowerliftingResult {
     private double wilksLevel;
     private double glossbrennerLevel;
     private double goodliftLevel;
+    private String weightClass;
 
     public PowerliftingResult(double age, double bodyWeight, double squatStrenghtLevel, double benchpressStrenghtLevel, double deadliftStrenghtLevel, double totalPowerliftStrenghtLevel, double dotsLevel, double wilksLevel, double glossbrennerLevel, double goodliftLevel) {
         this.age = age;
@@ -29,6 +30,12 @@ public class PowerliftingResult {
         this.wilksLevel = wilksLevel;
         this.glossbrennerLevel = glossbrennerLevel;
         this.goodliftLevel = goodliftLevel;
+        if (bodyWeight > 120) {
+            this.weightClass = "Weight class 120+";
+        }
+        if (bodyWeight > 86 && bodyWeight <= 100) {
+            this.weightClass = "Weight class 86-100";
+        }
     }
 
     @Override
@@ -44,6 +51,7 @@ public class PowerliftingResult {
                 ", wilksLevel=" + wilksLevel +
                 ", glossbrennerLevel=" + glossbrennerLevel +
                 ", goodliftLevel=" + goodliftLevel +
+                ", weightClass='" + weightClass + '\'' +
                 '}';
     }
 }
