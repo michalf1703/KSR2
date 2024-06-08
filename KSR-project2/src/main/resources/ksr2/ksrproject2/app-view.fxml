@@ -22,29 +22,29 @@
       <Button fx:id="goToMultiSubjectButton" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#onMultiSubjectButton" text="Go to multi subject summary" />
       <Text layoutX="152.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summarizer" />
       <Button fx:id="advancedUserPanelButton" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#onAdvancedUserPanelButton" text="Advanced user panel" />
-      <Text layoutX="1049.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weights for quality measures" />
-      <TextField fx:id="weightT1TF" layoutX="1049.0" layoutY="130.0" prefHeight="25.0" prefWidth="58.0" />
-      <Text layoutX="1021.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T1" />
-      <TextField fx:id="weightT2TF" layoutX="1049.0" layoutY="157.0" prefHeight="25.0" prefWidth="58.0" />
-      <Text layoutX="1021.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T2" />
-      <Text layoutX="1021.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T3" />
-      <TextField fx:id="weightT3TF" layoutX="1049.0" layoutY="187.0" prefHeight="25.0" prefWidth="58.0" />
-      <Text layoutX="1023.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T4" />
-      <TextField fx:id="weightT4TF" layoutX="1049.0" layoutY="216.0" prefHeight="25.0" prefWidth="58.0" />
-      <Text layoutX="1023.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T5" />
-      <TextField fx:id="weightT5TF" layoutX="1049.0" layoutY="247.0" prefHeight="25.0" prefWidth="58.0" />
-      <Text layoutX="1130.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T6" />
-      <TextField fx:id="weightT6TF" layoutX="1157.0" layoutY="130.0" prefHeight="25.0" prefWidth="58.0" />
-      <Text layoutX="1130.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T7" />
-      <TextField fx:id="weightT7TF" layoutX="1157.0" layoutY="158.0" prefHeight="25.0" prefWidth="58.0" />
-      <Text layoutX="1130.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T8" />
-      <TextField fx:id="weightT8TF" layoutX="1157.0" layoutY="187.0" prefHeight="25.0" prefWidth="58.0" />
-      <Text layoutX="1130.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T9" />
-      <TextField fx:id="weightT9TF" layoutX="1157.0" layoutY="216.0" prefHeight="25.0" prefWidth="58.0" />
-      <Text layoutX="1126.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T10" />
-      <TextField fx:id="weightT10TF" layoutX="1157.0" layoutY="247.0" prefHeight="25.0" prefWidth="58.0" />
-      <TextField fx:id="weightT11TF" layoutX="1097.0" layoutY="279.0" prefHeight="25.0" prefWidth="58.0" />
-      <Text layoutX="1068.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T11" />
+      <Text layoutX="933.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weights for quality measures" />
+      <TextField fx:id="weightT1TF" layoutX="933.0" layoutY="140.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="905.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T1" />
+      <TextField fx:id="weightT2TF" layoutX="933.0" layoutY="167.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="905.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T2" />
+      <Text layoutX="905.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T3" />
+      <TextField fx:id="weightT3TF" layoutX="933.0" layoutY="197.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="907.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T4" />
+      <TextField fx:id="weightT4TF" layoutX="933.0" layoutY="226.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="907.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T5" />
+      <TextField fx:id="weightT5TF" layoutX="933.0" layoutY="257.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="1014.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T6" />
+      <TextField fx:id="weightT6TF" layoutX="1041.0" layoutY="140.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="1014.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T7" />
+      <TextField fx:id="weightT7TF" layoutX="1041.0" layoutY="168.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="1014.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T8" />
+      <TextField fx:id="weightT8TF" layoutX="1041.0" layoutY="197.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="1014.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T9" />
+      <TextField fx:id="weightT9TF" layoutX="1041.0" layoutY="226.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="1010.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T10" />
+      <TextField fx:id="weightT10TF" layoutX="1041.0" layoutY="257.0" prefHeight="25.0" prefWidth="58.0" />
+      <TextField fx:id="weightT11TF" layoutX="981.0" layoutY="289.0" prefHeight="25.0" prefWidth="58.0" />
+      <Text layoutX="952.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T11" />
       <Text layoutX="350.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort by:" />
       <ChoiceBox fx:id="sortByChoiceBox" layoutX="320.0" layoutY="342.0" onDragDetected="#sortBtn_onAction" prefHeight="25.0" prefWidth="100.0" />
       <TableView fx:id="summaryTable" layoutX="11.0" layoutY="380.0" prefHeight="234.0" prefWidth="1689.0" />
@@ -54,5 +54,6 @@
       <TextField fx:id="numberOfSummariesField" layoutX="459.0" layoutY="342.0" prefHeight="25.0" prefWidth="82.0" />
       <Text layoutX="731.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantifier" />
       <TreeView fx:id="quantifiersTreeView" layoutX="622.0" layoutY="100.0" prefHeight="209.0" prefWidth="259.0" />
+      <Button layoutX="679.0" layoutY="16.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
    </children>
 </Pane>

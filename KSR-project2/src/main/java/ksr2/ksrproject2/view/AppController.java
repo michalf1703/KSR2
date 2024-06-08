@@ -500,6 +500,11 @@ public class AppController implements Initializable {
         summaryList.addAll(summariesDTO);
         summaryTable.setItems(summaryList);
     }
+    @FXML
+    private void refresh() {
+        fillQualifiersTreeView();
+        fillSummarizersTreeView();
+    }
     public static class RoundedTableCell<S, T> extends TableCell<S, T> {
         @Override
         protected void updateItem(T item, boolean empty) {
