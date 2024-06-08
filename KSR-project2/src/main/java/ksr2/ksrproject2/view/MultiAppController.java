@@ -189,7 +189,11 @@ public class MultiAppController implements Initializable {
         summaryTable.setItems(summaryList);
     }
 
-
+    @FXML
+    private void refresh() {
+        fillQualifiersTreeView();
+        fillSummarizersTreeView();
+    }
 
     private void generateSummariesMultiObject(List<Quantifier> quantifiers, List<Label> qualifiers,
                                               List<Label> summarizers) {

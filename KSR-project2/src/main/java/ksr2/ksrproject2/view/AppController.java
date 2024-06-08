@@ -9,14 +9,27 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-import javafx.scene.control.Label;
 import javafx.scene.control.cell.CheckBoxTreeCell;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import ksr2.ksrproject2.logic.calculation.membershipFunctions.GaussianFunction;
+import ksr2.ksrproject2.logic.calculation.membershipFunctions.MembershipFunction;
+import ksr2.ksrproject2.logic.calculation.membershipFunctions.TrapezoidalFunction;
+import ksr2.ksrproject2.logic.calculation.membershipFunctions.TriangularFunction;
+import ksr2.ksrproject2.logic.calculation.sets.ContinuousSet;
+import ksr2.ksrproject2.logic.calculation.sets.FuzzySet;
 import ksr2.ksrproject2.logic.summarization.*;
+import ksr2.ksrproject2.logic.summarization.Label;
 import ksr2.ksrproject2.logic.summarization.forms.singleForms.FirstFormSingleSubjectSummary;
 import ksr2.ksrproject2.logic.summarization.forms.singleForms.SecondFormSingleSubjectSummary;
 import ksr2.ksrproject2.logic.summarization.forms.singleForms.SingleSubjectSummary;
@@ -26,6 +39,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AppController implements Initializable {
     @FXML
@@ -45,6 +59,38 @@ public class AppController implements Initializable {
     private TextField weightT1TF,weightT2TF, weightT3TF, weightT4TF, weightT5TF, weightT6TF, weightT7TF, weightT8TF, weightT9TF, weightT10TF, weightT11TF;
 
     private final List<SingleSubjectSummary> summaries = new ArrayList<>();
+    @FXML
+    private ComboBox<String> labelTypeCB;
+    @FXML
+    private Text objectTypeText;
+    @FXML
+    private ComboBox<String> optionCB;
+    @FXML
+    private ComboBox<String> functionCB;
+    @FXML
+    private AnchorPane membershipFunctionPane;
+    @FXML
+    private TextField labelNameTF;
+    @FXML
+    private Text aText;
+    @FXML
+    private Text bText;
+    @FXML
+    private Text cText;
+    @FXML
+    private Text dText;
+    @FXML
+    private TextField aTF;
+    @FXML
+    private TextField bTF;
+    @FXML
+    private TextField cTF;
+    @FXML
+    private TextField dTF;
+    @FXML
+    private StackPane stackPaneChart;
+
+    private LineChart<Number, Number> lineChart;
 
 
 
@@ -504,7 +550,20 @@ public class AppController implements Initializable {
     private void refresh() {
         fillQualifiersTreeView();
         fillSummarizersTreeView();
+        fillQuantifiersTreeView();
     }
+
+
+
+
+    private void showInfoAlert(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
+        alert.showAndWait();
+    }
+
+
+
+
     public static class RoundedTableCell<S, T> extends TableCell<S, T> {
         @Override
         protected void updateItem(T item, boolean empty) {

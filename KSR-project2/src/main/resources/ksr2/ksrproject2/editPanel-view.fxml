@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="626.0" prefWidth="856.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ksr2.ksrproject2.view.EditPanelView">
+<AnchorPane prefHeight="726.0" prefWidth="1349.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ksr2.ksrproject2.view.EditPanelView">
    <children>
       <Text layoutX="26.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ obiektu" wrappingWidth="93.33672714233398" />
       <ComboBox fx:id="labelTypeCB" layoutX="151.0" layoutY="104.0" onAction="#labelTypeCB_onAction" prefWidth="150.0" />
@@ -32,6 +32,5 @@
          </children>
       </AnchorPane>
       <StackPane fx:id="stackPaneChart" layoutX="349.0" layoutY="93.0" prefHeight="435.0" prefWidth="612.0" />
-      <Button layoutX="47.0" layoutY="23.0" mnemonicParsing="false" onAction="#onReturnToMainPage" text="Back to menu" />
    </children>
 </AnchorPane>
