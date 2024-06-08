@@ -24,9 +24,11 @@ import ksr2.ksrproject2.logic.summarization.Label;
 import ksr2.ksrproject2.logic.summarization.LinguisticVariable;
 import ksr2.ksrproject2.logic.summarization.Quantifier;
 import ksr2.ksrproject2.logic.summarization.forms.multiForms.*;
+import ksr2.ksrproject2.logic.summarization.forms.singleForms.SingleSubjectSummary;
 import ksr2.ksrproject2.view.model.MultiSubjectSummaryDTO;
 import ksr2.ksrproject2.view.model.SubjectType;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -162,6 +164,7 @@ public class MultiAppController implements Initializable {
         fillSummaryTable();
     }
     private void fillSummaryTable() {
+        summaries.sort(Comparator.comparing(MultiSubjectSummary::getDegreeOfTruthT1).reversed());
         ArrayList<MultiSubjectSummaryDTO> summariesDTO = new ArrayList<>();
         for (MultiSubjectSummary summary : summaries) {
             int formNumber;
@@ -308,6 +311,22 @@ public class MultiAppController implements Initializable {
 
     }
 
+    @FXML
+    void saveSummaryToFile(ActionEvent event) {
+        summaries.sort(Comparator.comparing(MultiSubjectSummary::getDegreeOfTruthT1).reversed());
+        try (FileWriter writer = new FileWriter("summaries-multi.txt")) {
+            for (MultiSubjectSummary summary : summaries) {
+                writer.write(summary.toString() + " ");
+                writer.write("[T1: " + summary.getDegreeOfTruthT1() +"] ");
+                writer.write(System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     private Label findLabel(String variableName, String labelName) {
         for (LinguisticVariable var : Data.linguisticVariables) {
             if (var.getName().equals(variableName)) {
@@ -341,4 +360,5 @@ public class MultiAppController implements Initializable {
             setAlignment(Pos.CENTER);
         }
     }
+
 }

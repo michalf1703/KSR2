@@ -25,7 +25,8 @@
       <Text layoutX="162.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summary" />
       <TreeView fx:id="qualifiersTreeView" layoutX="384.0" layoutY="138.0" prefHeight="346.0" prefWidth="335.0" />
       <TreeView fx:id="summarizersTreeView" layoutX="35.0" layoutY="138.0" prefHeight="346.0" prefWidth="335.0" />
-      <Button layoutX="338.0" layoutY="505.0" mnemonicParsing="false" onAction="#generateButton_OnAction" text="Generate" />
+      <Button layoutX="100.0" layoutY="506.0" mnemonicParsing="false" onAction="#generateButton_OnAction" text="Generate" />
       <TableView fx:id="summaryTable" layoutX="14.0" layoutY="539.0" prefHeight="200.0" prefWidth="1391.0" />
+      <Button layoutX="186.0" layoutY="506.0" mnemonicParsing="false" onAction="#saveSummaryToFile" text="Save to file" />
     </children>
 </Pane>
