@@ -36,8 +36,8 @@ public class ThirdFormMultiSubjectSummary implements MultiSubjectSummary {
 
     @Override
     public String toString() {
-        String subjectName1 = subject1.isEmpty() ? "Nieznany" : subject1.get(0).getWeightClass();
-        String subjectName2 = subject2.isEmpty() ? "Nieznany" : subject2.get(0).getWeightClass();
+        String subjectName1 = subject1.isEmpty() ? "Nieznany" : subject1.get(0).getAgeCategory();
+        String subjectName2 = subject2.isEmpty() ? "Nieznany" : subject2.get(0).getAgeCategory();
         StringBuilder sb = new StringBuilder();
         sb.append(quantifier.getName().toUpperCase(Locale.ROOT)).append(" competitors in " + subjectName1).append(" which are/have ");
         for (int i = 0; i < qualifiers.size(); i++) {

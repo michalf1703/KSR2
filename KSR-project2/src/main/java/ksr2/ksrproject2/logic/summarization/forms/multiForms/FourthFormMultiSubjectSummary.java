@@ -45,8 +45,8 @@ public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
     }
     @Override
     public String toString() {
-        String subjectName1 = subject1.isEmpty() ? "Nieznany" : subject1.get(0).getWeightClass();
-        String subjectName2 = subject2.isEmpty() ? "Nieznany" : subject2.get(0).getWeightClass();
+        String subjectName1 = subject1.isEmpty() ? "Nieznany" : subject1.get(0).getAgeCategory();
+        String subjectName2 = subject2.isEmpty() ? "Nieznany" : subject2.get(0).getAgeCategory();
         StringBuilder sb = new StringBuilder();
         sb.append("More ")
                 .append("competitors in ")

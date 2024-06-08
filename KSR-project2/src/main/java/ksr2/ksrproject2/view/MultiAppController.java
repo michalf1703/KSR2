@@ -197,11 +197,11 @@ public class MultiAppController implements Initializable {
         List<PowerliftingResult> objects2;
 
         if (firstSubject_CB.getValue().equals(Weight_120_plus)) {
-            objects1 = Data.powerliftingResults.stream().filter(powerliftingResult -> powerliftingResult.getWeightClass().equals(Weight_120_plus.getDbName())).collect(Collectors.toList());
-            objects2 = Data.powerliftingResults.stream().filter(powerliftingResult -> powerliftingResult.getWeightClass().equals(Weight_80_120.getDbName())).collect(Collectors.toList());
+            objects1 = Data.powerliftingResults.stream().filter(powerliftingResult -> powerliftingResult.getAgeCategory().equals(Weight_120_plus.getDbName())).collect(Collectors.toList());
+            objects2 = Data.powerliftingResults.stream().filter(powerliftingResult -> powerliftingResult.getAgeCategory().equals(Weight_80_120.getDbName())).collect(Collectors.toList());
         } else {
-            objects1 = Data.powerliftingResults.stream().filter(powerliftingResult -> powerliftingResult.getWeightClass().equals(Weight_80_120.getDbName())).collect(Collectors.toList());
-            objects2 = Data.powerliftingResults.stream().filter(powerliftingResult -> powerliftingResult.getWeightClass().equals(Weight_120_plus.getDbName())).collect(Collectors.toList());
+            objects1 = Data.powerliftingResults.stream().filter(powerliftingResult -> powerliftingResult.getAgeCategory().equals(Weight_80_120.getDbName())).collect(Collectors.toList());
+            objects2 = Data.powerliftingResults.stream().filter(powerliftingResult -> powerliftingResult.getAgeCategory().equals(Weight_120_plus.getDbName())).collect(Collectors.toList());
         }
 
         for (int i = 1; i < summarizers.size() + 1; i++) {
