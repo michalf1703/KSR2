@@ -6,7 +6,8 @@ module ksr.ksrproject {
     requires java.desktop;
     requires javafx.graphics;
     requires lombok;
-    requires jFuzzyLogic;
+
+    requires org.jfree.jfreechart;
 
     opens ksr2.ksrproject2 to javafx.fxml;
     exports ksr2.ksrproject2;
