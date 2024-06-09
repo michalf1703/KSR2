@@ -29,9 +29,9 @@ public class FourthFormMultiSubjectSummary implements MultiSubjectSummary {
             double memberShip = and(summarizers, powerliftingResult);
             if (subject1.contains(powerliftingResult) && subject2.contains(powerliftingResult)) {
                 implication += lukasiewiczImplication(memberShip, memberShip);
-            } else if (subject1.contains(powerliftingResult) && !subject1.contains(powerliftingResult)) {
+            } else if (subject1.contains(powerliftingResult) && !subject2.contains(powerliftingResult)) {
                 implication += lukasiewiczImplication(memberShip, 0);
-            } else if (!subject2.contains(powerliftingResult) && subject1.contains(powerliftingResult)) {
+            } else if (subject2.contains(powerliftingResult) && !subject1.contains(powerliftingResult)) {
                 implication += lukasiewiczImplication(0, memberShip);
             }
 
