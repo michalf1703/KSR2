@@ -5,31 +5,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableSet;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTreeCell;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import ksr2.ksrproject2.logic.calculation.membershipFunctions.GaussianFunction;
-import ksr2.ksrproject2.logic.calculation.membershipFunctions.MembershipFunction;
-import ksr2.ksrproject2.logic.calculation.membershipFunctions.TrapezoidalFunction;
-import ksr2.ksrproject2.logic.calculation.membershipFunctions.TriangularFunction;
-import ksr2.ksrproject2.logic.calculation.sets.ContinuousSet;
-import ksr2.ksrproject2.logic.calculation.sets.FuzzySet;
 import ksr2.ksrproject2.logic.summarization.*;
-import ksr2.ksrproject2.logic.summarization.Label;
 import ksr2.ksrproject2.logic.summarization.forms.singleForms.FirstFormSingleSubjectSummary;
 import ksr2.ksrproject2.logic.summarization.forms.singleForms.SecondFormSingleSubjectSummary;
 import ksr2.ksrproject2.logic.summarization.forms.singleForms.SingleSubjectSummary;
@@ -39,17 +19,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class AppController implements Initializable {
     @FXML
     private TableView<SingleSubjectSummaryDTO> summaryTable;
 
     @FXML
-    private TreeView<String> summarizersTreeView, qualifiersTreeView, quantifiersTreeView;
+    private TreeView<String> summarizersTreeView, qualifiersTreeView;
 
-    @FXML
-    private Button advancedUserPanelButton;
     @FXML
     private TextField numberOfSummariesField;
 
@@ -59,88 +36,7 @@ public class AppController implements Initializable {
     private TextField weightT1TF,weightT2TF, weightT3TF, weightT4TF, weightT5TF, weightT6TF, weightT7TF, weightT8TF, weightT9TF, weightT10TF, weightT11TF;
 
     private final List<SingleSubjectSummary> summaries = new ArrayList<>();
-    @FXML
-    private ComboBox<String> labelTypeCB;
-    @FXML
-    private Text objectTypeText;
-    @FXML
-    private ComboBox<String> optionCB;
-    @FXML
-    private ComboBox<String> functionCB;
-    @FXML
-    private AnchorPane membershipFunctionPane;
-    @FXML
-    private TextField labelNameTF;
-    @FXML
-    private Text aText;
-    @FXML
-    private Text bText;
-    @FXML
-    private Text cText;
-    @FXML
-    private Text dText;
-    @FXML
-    private TextField aTF;
-    @FXML
-    private TextField bTF;
-    @FXML
-    private TextField cTF;
-    @FXML
-    private TextField dTF;
-    @FXML
-    private StackPane stackPaneChart;
 
-    private LineChart<Number, Number> lineChart;
-
-
-
-    @FXML
-    void onAdvancedUserPanelButton(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ksr2/ksrproject2/editPanel-view.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    void onMultiSubjectButton(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ksr2/ksrproject2/multiView.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-    private void fillQuantifiersTreeView() {
-        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Quantifiers");
-        root.setExpanded(true);
-        for (Quantifier quantifier : Data.relativeQuantifiers) {
-            CheckBoxTreeItem<String> quantifierTreeItem = new CheckBoxTreeItem<>(quantifier.getName());
-            root.getChildren().add(quantifierTreeItem);
-        }
-        for (Quantifier quantifier : Data.absoluteQuantifiers) {
-            CheckBoxTreeItem<String> quantifierTreeItem = new CheckBoxTreeItem<>(quantifier.getName());
-            root.getChildren().add(quantifierTreeItem);
-        }
-        quantifiersTreeView.setRoot(root);
-        quantifiersTreeView.setCellFactory(CheckBoxTreeCell.forTreeView());
-    }
 
     private void fillQualifiersTreeView() {
         CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Qualifiers");
@@ -159,7 +55,7 @@ public class AppController implements Initializable {
     }
 
     private void fillSummarizersTreeView() {
-        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Summary");
+        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Summarizers");
         root.setExpanded(true);
         for (LinguisticVariable var : Data.linguisticVariables) {
             CheckBoxTreeItem<String> variableTreeItem = new CheckBoxTreeItem<>(var.getName());
@@ -252,7 +148,6 @@ public class AppController implements Initializable {
         sortByChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortBtn_onAction());
         fillQualifiersTreeView();
         fillSummarizersTreeView();
-        fillQuantifiersTreeView();
         initSummaryTableColumns();
         fillWeights();
     }
@@ -345,23 +240,13 @@ public class AppController implements Initializable {
 
         Set<String> temp1 = new HashSet<>();
         Set<String> temp2 = new HashSet<>();
-        Set<String> temp3 = new HashSet<>();
         ObservableSet<String> checkedQualifiers = FXCollections.observableSet(temp1);
         ObservableSet<String> checkedSummarizers = FXCollections.observableSet(temp2);
-        ObservableSet<String> checkedQuantifiers = FXCollections.observableSet(temp3);
         findCheckedItems((CheckBoxTreeItem<?>) qualifiersTreeView.getRoot(), checkedQualifiers);
         findCheckedItems((CheckBoxTreeItem<?>) summarizersTreeView.getRoot(), checkedSummarizers);
-        findCheckedItems((CheckBoxTreeItem<?>) quantifiersTreeView.getRoot(), checkedQuantifiers);
-
-        // Print the results of findCheckedItems()
-       // System.out.println("Checked qualifiers: " + checkedQualifiers);
-       // System.out.println("Checked summarizers: " + checkedSummarizers);
-       // System.out.println("Checked quantifiers: " + checkedQuantifiers);
-
         summaries.clear();
         List<ksr2.ksrproject2.logic.summarization.Label> qualifiers = new ArrayList<>();
         List<ksr2.ksrproject2.logic.summarization.Label> summarizers = new ArrayList<>();
-        List<Quantifier> quantifiers = new ArrayList<>();
 
         for (String chosenOption : temp1) {
             String[] names = chosenOption.split(";");
@@ -371,39 +256,20 @@ public class AppController implements Initializable {
             String[] names = chosenOption.split(";");
             summarizers.add(findLabel(names[0], names[1]));
         }
-        for (String chosenOption : temp3) {
-            quantifiers.add(findQuantifier(chosenOption));
-        }
 
-        if (quantifiers.isEmpty()) {
-            System.out.println("No quantifiers selected. Please select at least one quantifier.");
-            return;
-        }
-
-        if (qualifiers.size() == 0) { // First form.
+        if (qualifiers.size() == 0) {
+            List<Quantifier> quantifiers = new ArrayList<>();
+            quantifiers.addAll(Data.relativeQuantifiers);
+            quantifiers.addAll(Data.absoluteQuantifiers);
             generateSummariesFirstForm(quantifiers, qualifiers, summarizers);
-        } else { // Second form.
+        } else {
+            List<Quantifier> quantifiers = new ArrayList<>(Data.relativeQuantifiers);
             generateSummariesSecondForm(quantifiers, qualifiers, summarizers);
         }
 
         fillSummaryTable();
     }
-    private Quantifier findQuantifier(String name) {
-        String quantifierName = name.replace("Quantifiers;", "");
 
-        for (Quantifier quantifier : Data.relativeQuantifiers) {
-            if (quantifier.getName().equals(quantifierName)) {
-                return quantifier;
-            }
-        }
-        for (Quantifier quantifier : Data.absoluteQuantifiers) {
-            if (quantifier.getName().equals(quantifierName)) {
-                return quantifier;
-            }
-        }
-        System.out.println("Could not find quantifier with name: " + quantifierName);
-        return null;
-    }
     private void generateSummariesFirstForm(List<Quantifier> quantifiers, List<ksr2.ksrproject2.logic.summarization.Label> qualifiers,
                                             List<ksr2.ksrproject2.logic.summarization.Label> summarizers) {
         for (int i = 1; i < summarizers.size() + 1; i++) {
@@ -422,7 +288,7 @@ public class AppController implements Initializable {
                         SingleSubjectSummary singleSubjectSummary;
                         if (qualifiers.size() == 0) {
                             singleSubjectSummary = new FirstFormSingleSubjectSummary(Data.measureWeights, quantifier, tempSumList, Data.powerliftingResults);
-                        } else if (quantifier instanceof RelativeQuantifier) { // Ensure quantifier is a RelativeQuantifier
+                        } else if (quantifier instanceof RelativeQuantifier) {
                             singleSubjectSummary = new SecondFormSingleSubjectSummary(Data.measureWeights, (RelativeQuantifier) quantifier, qualifiers, tempSumList, Data.powerliftingResults);
                         } else {
                             continue;
@@ -516,8 +382,7 @@ public class AppController implements Initializable {
 
     private void fillSummaryTable() {
         ArrayList<SingleSubjectSummaryDTO> summariesDTO = new ArrayList<>();
-        int numberOfSummaries = summaries.size(); // default to all summaries
-
+        int numberOfSummaries = summaries.size();
         if (!numberOfSummariesField.getText().isEmpty()) {
             numberOfSummaries = Integer.parseInt(numberOfSummariesField.getText());
         }
@@ -550,18 +415,7 @@ public class AppController implements Initializable {
     private void refresh() {
         fillQualifiersTreeView();
         fillSummarizersTreeView();
-        fillQuantifiersTreeView();
     }
-
-
-
-
-    private void showInfoAlert(String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
-        alert.showAndWait();
-    }
-
-
 
 
     public static class RoundedTableCell<S, T> extends TableCell<S, T> {

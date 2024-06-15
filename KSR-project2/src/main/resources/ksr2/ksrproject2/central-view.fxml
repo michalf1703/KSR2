@@ -15,19 +15,19 @@
    <children>
       <TabPane layoutX="10.0" layoutY="33.0" prefHeight="757.0" prefWidth="1555.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Single summary">
+          <Tab text="Single summarization">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="570.0" prefWidth="1270.0">
                      <children>
-                        <Text layoutX="448.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Single subject summary " textAlignment="CENTER">
+                        <Text layoutX="448.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Single subject summarization " textAlignment="CENTER">
                            <font>
                               <Font name="Alef Regular" size="22.0" />
                            </font>
                         </Text>
-                        <Text layoutX="400.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qualifier" />
+                        <Text layoutX="400.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qualifiers" />
                         <Button fx:id="generateSummarizationButton" layoutX="48.0" layoutY="348.0" mnemonicParsing="false" onAction="#generateSummaryBtn_onAction" text="Generate summarization" />
                         <Button fx:id="saveSummarizationButton" layoutX="361.0" layoutY="348.0" mnemonicParsing="false" onAction="#saveToFileBtn_onAction" text="Save summarization" />
-                        <Text layoutX="109.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summarizer" />
+                        <Text layoutX="109.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Summarizers" />
                         <Text layoutX="944.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weights for quality measures" />
                         <TextField fx:id="weightT1TF" layoutX="949.0" layoutY="80.0" prefHeight="25.0" prefWidth="58.0" />
                         <Text layoutX="923.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T1" />
@@ -56,19 +56,17 @@
                         <TableView fx:id="summaryTable" layoutY="384.0" prefHeight="234.0" prefWidth="1690.0" />
                         <TreeView fx:id="summarizersTreeView" layoutX="22.0" layoutY="93.0" prefHeight="209.0" prefWidth="259.0" />
                         <TreeView fx:id="qualifiersTreeView" layoutX="293.0" layoutY="93.0" prefHeight="209.0" prefWidth="259.0" />
-                        <Text layoutX="243.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of summaries" />
+                        <Text layoutX="221.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of summarizations" />
                         <TextField fx:id="numberOfSummariesField" layoutX="252.0" layoutY="348.0" prefHeight="25.0" prefWidth="82.0" />
-                        <Text layoutX="666.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantifier" />
-                        <TreeView fx:id="quantifiersTreeView" layoutX="563.0" layoutY="93.0" prefHeight="209.0" prefWidth="259.0" />
-                        <Button layoutX="751.0" layoutY="26.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+                        <Button layoutX="570.0" layoutY="186.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Multi summary">
+          <Tab text="Multi summarization">
             <fx:include source="multiView.fxml" />
           </Tab>
-            <Tab text="Advanced panel">
+            <Tab text="Advanced-user panel">
             <fx:include source="editPanel-view.fxml" />
             </Tab>
         </tabs>

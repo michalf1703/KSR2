@@ -78,7 +78,7 @@ public class MultiAppController implements Initializable {
     }
 
     private void fillQualifiersTreeView() {
-        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Kwalifikatory");
+        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Qualifiers");
         root.setExpanded(true);
         for (LinguisticVariable var : Data.linguisticVariables) {
             CheckBoxTreeItem<String> variableTreeItem = new CheckBoxTreeItem<>(var.getName());
@@ -94,7 +94,7 @@ public class MultiAppController implements Initializable {
     }
 
     private void fillSummarizersTreeView() {
-        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Sumaryzatory");
+        CheckBoxTreeItem<String> root = new CheckBoxTreeItem<>("Summarizers");
         root.setExpanded(true);
         for (LinguisticVariable var : Data.linguisticVariables) {
             CheckBoxTreeItem<String> variableTreeItem = new CheckBoxTreeItem<>(var.getName());
@@ -109,12 +109,12 @@ public class MultiAppController implements Initializable {
         summarizersTreeView.setCellFactory(CheckBoxTreeCell.forTreeView());
     }
     public void initSummaryTableColumns() {
-        TableColumn<MultiSubjectSummaryDTO, Integer> formNumber = new TableColumn<>("Numer formy");
+        TableColumn<MultiSubjectSummaryDTO, Integer> formNumber = new TableColumn<>("Number of form");
         formNumber.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getFormNumber()).asObject());
         formNumber.setCellFactory(column -> new CenteredTableCell<>());
         formNumber.setPrefWidth(100);
 
-        TableColumn<MultiSubjectSummaryDTO, String> summaryColumn = new TableColumn<>("Podsumowanie");
+        TableColumn<MultiSubjectSummaryDTO, String> summaryColumn = new TableColumn<>("Summary");
         summaryColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getTextValue()));
         summaryColumn.setPrefWidth(1200);
 
@@ -136,13 +136,13 @@ public class MultiAppController implements Initializable {
         findCheckedItems((CheckBoxTreeItem<?>) qualifiersTreeView.getRoot(), checkedQuantifiers1);
         findCheckedItems((CheckBoxTreeItem<?>) summarizersTreeView.getRoot(), checkedSummarizers);
         if (firstSubject_CB.getValue() == null) {
-            throw new RuntimeException("Należy wybrać podmiot");
+            throw new RuntimeException("Subject 1 is not selected");
         }
         if (checkedQuantifiers1.size() > 3) {
-            throw new RuntimeException("Wybrano zbyt wiele kwalifikatorów dla podmiotu");
+            throw new RuntimeException("Wrong number of qualifiers. You can choose up to 3 qualifiers");
         }
         if (checkedSummarizers.size() > 3 || checkedSummarizers.size() == 0) {
-            throw new RuntimeException("Błędna liczba sumaryzatorów. Należy wybrać od 1 do 3 sumaryzatorów");
+            throw new RuntimeException("Wrong number of summarizers. You can choose from 1 to 3 summarizers");
         }
         summaries.clear();
         List<Label> qualifiers1 = new ArrayList<>();

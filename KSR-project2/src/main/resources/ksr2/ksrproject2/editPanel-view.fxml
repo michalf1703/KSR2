@@ -9,26 +9,26 @@
 
 <AnchorPane prefHeight="726.0" prefWidth="1349.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ksr2.ksrproject2.view.EditPanelView">
    <children>
-      <Text layoutX="26.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ obiektu" wrappingWidth="93.33672714233398" />
+      <Text layoutX="26.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of object" wrappingWidth="93.33672714233398" />
       <ComboBox fx:id="labelTypeCB" layoutX="151.0" layoutY="104.0" onAction="#labelTypeCB_onAction" prefWidth="150.0" />
       <Text fx:id="objectTypeText" layoutX="26.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="93.33672714233398" />
       <ComboBox fx:id="optionCB" layoutX="151.0" layoutY="146.0" prefWidth="150.0" />
-      <Text layoutX="26.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rodzaj funkcji" wrappingWidth="93.33672714233398" />
+      <Text layoutX="26.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of function" wrappingWidth="93.33672714233398" />
       <ComboBox fx:id="functionCB" layoutX="151.0" layoutY="198.0" onAction="#functionCB_onAction" prefWidth="150.0" />
       <AnchorPane fx:id="membershipFunctionPane" layoutX="26.0" layoutY="236.0" prefHeight="281.0" prefWidth="374.0">
          <children>
-            <Text layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa etykiety" />
+            <Text layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Label name" />
             <TextField fx:id="labelNameTF" layoutX="112.0" layoutY="20.0" />
-            <Text fx:id="aText" layoutX="18.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.74023437499994" />
+            <Text fx:id="aText" layoutX="18.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " wrappingWidth="79.74023437499994" />
             <TextField fx:id="aTF" layoutX="112.0" layoutY="71.0" />
-            <Text fx:id="bText" layoutX="18.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.74023437499994" />
+            <Text fx:id="bText" layoutX="18.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " wrappingWidth="79.74023437499994" />
             <TextField fx:id="bTF" layoutX="112.0" layoutY="106.0" />
-            <Text fx:id="cText" layoutX="18.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.74023437499994" />
+            <Text fx:id="cText" layoutX="18.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " wrappingWidth="79.74023437499994" />
             <TextField fx:id="cTF" layoutX="112.0" layoutY="145.0" />
-            <Text fx:id="dText" layoutX="18.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.74023437499989" />
+            <Text fx:id="dText" layoutX="18.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " wrappingWidth="79.74023437499989" />
             <TextField fx:id="dTF" layoutX="112.0" layoutY="185.0" />
-            <Button layoutX="132.0" layoutY="255.0" mnemonicParsing="false" onAction="#addNewLabel_onAction" text="Dodaj" />
-            <Button layoutX="206.0" layoutY="255.0" mnemonicParsing="false" onAction="#generateNewLabel_onAction" text="Generuj" />
+            <Button layoutX="132.0" layoutY="255.0" mnemonicParsing="false" onAction="#addNewLabel_onAction" text="Add" />
+            <Button layoutX="206.0" layoutY="255.0" mnemonicParsing="false" onAction="#generateNewLabel_onAction" text="Generate" />
          </children>
       </AnchorPane>
       <StackPane fx:id="stackPaneChart" layoutX="349.0" layoutY="93.0" prefHeight="435.0" prefWidth="612.0" />

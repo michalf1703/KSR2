@@ -82,7 +82,7 @@ public class EditPanelView implements Initializable {
         optionCB.getItems().clear();
         String value = labelTypeCB.getValue();
         if ("Quantifier".equals(value)) {
-            objectTypeText.setText("Typ kwantyfikatora");
+            objectTypeText.setText("Type of Quantifier");
             optionCB.getItems().addAll(List.of("Absolute", "Relative"));
         } else if ("Linguistic Variable".equals(value)) {
             objectTypeText.setText("Linguistic Variable");
@@ -157,7 +157,7 @@ public class EditPanelView implements Initializable {
             }
         }
         showChart();
-        showInfoAlert(labelNameTF.getText() + " został dodany");
+        showInfoAlert(labelNameTF.getText() + " added successfully!");
     }
 
     private void showInfoAlert(String msg) {
