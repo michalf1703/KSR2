@@ -58,6 +58,7 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
             multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness(subject.stream().map(c -> fieldForLabel(summarizer, c)).collect(Collectors.toList()));
         }
         double res = Math.pow(multiply, 1.0 / summarizers.size());
+        System.out.println("Liczba obiektów: " + subject.size());
         return 1.0 - res;
     }
 

@@ -67,6 +67,7 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
         for (Label summarizer : summarizers) {
             multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness(subject.stream().map(c -> fieldForLabel(summarizer, c)).collect(Collectors.toList()));
         }
+        System.out.println("liczba obiektów: " + summarizers.size());
         double res = Math.pow(multiply, 1.0 / summarizers.size());
         return 1.0 - res;
     }

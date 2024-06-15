@@ -13,9 +13,9 @@
       <ComboBox fx:id="labelTypeCB" layoutX="151.0" layoutY="104.0" onAction="#labelTypeCB_onAction" prefWidth="150.0" />
       <Text fx:id="objectTypeText" layoutX="26.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="93.33672714233398" />
       <ComboBox fx:id="optionCB" layoutX="151.0" layoutY="146.0" prefWidth="150.0" />
-      <Text layoutX="26.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rodzaj funkcji" wrappingWidth="93.33672714233398" />
-      <ComboBox fx:id="functionCB" layoutX="151.0" layoutY="220.0" onAction="#functionCB_onAction" prefWidth="150.0" />
-      <AnchorPane fx:id="membershipFunctionPane" layoutX="39.0" layoutY="274.0" prefHeight="281.0" prefWidth="374.0">
+      <Text layoutX="26.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rodzaj funkcji" wrappingWidth="93.33672714233398" />
+      <ComboBox fx:id="functionCB" layoutX="151.0" layoutY="198.0" onAction="#functionCB_onAction" prefWidth="150.0" />
+      <AnchorPane fx:id="membershipFunctionPane" layoutX="26.0" layoutY="236.0" prefHeight="281.0" prefWidth="374.0">
          <children>
             <Text layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa etykiety" />
             <TextField fx:id="labelNameTF" layoutX="112.0" layoutY="20.0" />

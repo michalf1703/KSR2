@@ -40,10 +40,10 @@ public class Data {
         measures.put("T11", 0.07);
         measureWeights = new MeasureWeights(measures);
 
-        //age
-        Label junior = new Label("junior age", new FuzzySet(new TrapezoidalFunction(6, 6, 16, 23), new ContinuousSet(6, 23)), "Age");
-        Label senior = new Label("senior age", new FuzzySet(new TrapezoidalFunction(20, 25, 35, 40), new ContinuousSet(20, 40)), "Age");
-        Label master = new Label("master age", new FuzzySet(new TrapezoidalFunction(38, 45, 89, 89), new ContinuousSet(35, 89)), "Age");
+        //age -- git
+        Label junior = new Label("junior age", new FuzzySet(new TrapezoidalFunction(6, 6, 22, 25), new ContinuousSet(6, 25)), "Age");
+        Label senior = new Label("senior age", new FuzzySet(new TrapezoidalFunction(20, 30, 35, 45), new ContinuousSet(20, 40)), "Age");
+        Label master = new Label("master age", new FuzzySet(new TrapezoidalFunction(38, 45, 89, 89), new ContinuousSet(38, 89)), "Age");
         List<Label> ageLabels = new ArrayList<>(List.of(junior, senior, master));
         LinguisticVariable age = new LinguisticVariable("Age", ageLabels, new ContinuousSet(6, 89));
 
@@ -65,17 +65,17 @@ public class Data {
         LinguisticVariable squat = new LinguisticVariable("Squat-strenght-level", squatLabels, new ContinuousSet(0, 6));
 
         //bench press
-        Label lessThan2times = new Label("less than 2 times bodyweight score in benchpress", new FuzzySet(new TrapezoidalFunction(0.1, 0.1, 1, 2), new ContinuousSet(0.1, 2)), "Benchpress-strenght-level");
-        Label about2times = new Label("about 2 times bodyweight score in benchpress", new FuzzySet(new TrapezoidalFunction( 1.7, 2, 2.5,3), new ContinuousSet(1.7, 3)), "Benchpress-strenght-level");
-        Label about2_5times = new Label("about 2.5 times bodyweight score in benchpress", new FuzzySet(new TriangularFunction( 2.2, 2.5, 3.0), new ContinuousSet(2.2, 3.0)), "Benchpress-strenght-level");
+        Label lessThan2times = new Label("less than 2 times bodyweight score in benchpress", new FuzzySet(new TrapezoidalFunction(0.0, 0.0, 1, 2), new ContinuousSet(0.0, 2)), "Benchpress-strenght-level");
+        Label about2times = new Label("about 2 times bodyweight score in benchpress", new FuzzySet(new TriangularFunction(1.5,2.0,2.5), new ContinuousSet(1.5, 2.5)), "Benchpress-strenght-level");
+        Label about2_5times = new Label("about 2.5 times bodyweight score in benchpress", new FuzzySet(new TriangularFunction( 2.0, 2.5, 3.0), new ContinuousSet(2.0, 3.0)), "Benchpress-strenght-level");
         Label moreThan2_5times = new Label("more than 2.5 times bodyweight score in benchpress", new FuzzySet(new TrapezoidalFunction( 2.5, 3, 3.3,3.3), new ContinuousSet(2.5, 3.3)), "Benchpress-strenght-level");
         List<Label> benchpressLabels = new ArrayList<>(List.of(lessThan2times, about2times, about2_5times, moreThan2_5times));
-        LinguisticVariable benchpress = new LinguisticVariable("Benchpress-strenght-level", benchpressLabels, new ContinuousSet(0.1, 3.3));
+        LinguisticVariable benchpress = new LinguisticVariable("Benchpress-strenght-level", benchpressLabels, new ContinuousSet(0.0, 3.3));
 
         //deadlift
         Label lessThan3timesDeadlift = new Label("less than 3 times bodyweight score in deadlift", new FuzzySet(new TrapezoidalFunction(0.3, 0.3, 2, 3), new ContinuousSet(0.3, 3)), "Deadlift-strenght-level");
-        Label about3timesDeadlift = new Label("about 3 times bodyweight score in deadlift", new FuzzySet(new TriangularFunction( 2.5, 3, 3.5), new ContinuousSet(2.5, 3.5)), "Deadlift-strenght-level");
-        Label beetwen2and4Deadlift = new Label("beetwen 2 and 4 times bodyweight score in deadlift", new FuzzySet(new TrapezoidalFunction( 1.8,2,3.5, 4), new ContinuousSet(1.8, 4)), "Deadlift-strenght-level");
+        Label about3timesDeadlift = new Label("about 3 times bodyweight score in deadlift", new FuzzySet(new TriangularFunction( 2.2, 2.5, 3.0), new ContinuousSet(2.2, 3.0)), "Deadlift-strenght-level");
+        Label beetwen2and4Deadlift = new Label("beetwen 2 and 4 times bodyweight score in deadlift", new FuzzySet(new TriangularFunction(2.0,3.0,4.0), new ContinuousSet(2.0, 4.0)), "Deadlift-strenght-level");
         Label moreThan3_5timesDeadlift = new Label("more than 3.5 times bodyweight score in deadlift", new FuzzySet(new TrapezoidalFunction( 3.5, 4, 4.7, 4.7), new ContinuousSet(3.5, 4.7)), "Deadlift-strenght-level");
         List<Label> deadliftLabels = new ArrayList<>(List.of(lessThan3timesDeadlift, about3timesDeadlift, beetwen2and4Deadlift, moreThan3_5timesDeadlift));
         LinguisticVariable deadlift = new LinguisticVariable("Deadlift-strenght-level", deadliftLabels, new ContinuousSet(0.3, 4.7));
@@ -98,24 +98,24 @@ public class Data {
         LinguisticVariable dots = new LinguisticVariable("Dots-level", dotsLabels, new ContinuousSet(81, 704));
 
         //wilks
-        Label lessThen300 = new Label("less then 300 wilks score", new FuzzySet(new TrapezoidalFunction(83, 83, 200, 350), new ContinuousSet(83, 350)), "Wilks-score");
-        Label around250 = new Label("around 250 wilks score", new FuzzySet(new TriangularFunction(220, 250, 320), new ContinuousSet(220, 320)), "Wilks-score");
-        Label beetween400and600 = new Label("beetween 400 and 600 wilks score", new FuzzySet(new TrapezoidalFunction(300, 400, 550, 600), new ContinuousSet(300, 640)), "Wilks-score");
+        Label lessThen300 = new Label("less then 300 wilks score", new FuzzySet(new TrapezoidalFunction(83, 83, 200, 300), new ContinuousSet(83, 300)), "Wilks-score");
+        Label around250 = new Label("around 250 wilks score", new FuzzySet(new TriangularFunction(220, 250, 300), new ContinuousSet(220, 300)), "Wilks-score");
+        Label beetween400and600 = new Label("beetween 400 and 600 wilks score", new FuzzySet(new TrapezoidalFunction(200, 300, 400, 500), new ContinuousSet(200, 500)), "Wilks-score");
         Label moreThen500 = new Label("more then 500 wilks score", new FuzzySet(new TrapezoidalFunction(400, 500, 700, 700), new ContinuousSet(400, 700)), "Wilks-score");
         List<Label> wilksLabels = new ArrayList<>(List.of(lessThen300, around250, beetween400and600, moreThen500));
         LinguisticVariable wilks = new LinguisticVariable("Wilks-score", wilksLabels, new ContinuousSet(83, 700));
 
         //glossbrenner
-        Label begginerGlossbrenner = new Label("begginer glossbrenner level", new FuzzySet(new TrapezoidalFunction(80, 80, 140, 180), new ContinuousSet(80, 180)), "Glossbrenner-level");
-        Label intermediateGlossbrenner = new Label("intermediate glossbrenner level", new FuzzySet(new TrapezoidalFunction(150, 200, 240, 300), new ContinuousSet(150, 300)), "Glossbrenner-level");
-        Label advancedGlossbrenner = new Label("advanced glossbrenner level", new FuzzySet(new TrapezoidalFunction(270, 320, 390, 440), new ContinuousSet(270, 440)), "Glossbrenner-level");
-        Label masterGlossbrenner = new Label("master glossbrenner level", new FuzzySet(new TrapezoidalFunction(410, 450, 500, 550), new ContinuousSet(410, 550)), "Glossbrenner-level");
-        Label eliteGlossbrenner = new Label("elite glossbrenner level", new FuzzySet(new TrapezoidalFunction(520, 570, 670, 670), new ContinuousSet(520, 670)), "Glossbrenner-level");
+        Label begginerGlossbrenner = new Label("begginer glossbrenner level", new FuzzySet(new TrapezoidalFunction(80, 80, 180, 220), new ContinuousSet(80, 220)), "Glossbrenner-level");
+        Label intermediateGlossbrenner = new Label("intermediate glossbrenner level", new FuzzySet(new TrapezoidalFunction(170, 220, 300, 340), new ContinuousSet(170, 340)), "Glossbrenner-level");
+        Label advancedGlossbrenner = new Label("advanced glossbrenner level", new FuzzySet(new TrapezoidalFunction(300, 340, 440, 460), new ContinuousSet(300, 460)), "Glossbrenner-level");
+        Label masterGlossbrenner = new Label("master glossbrenner level", new FuzzySet(new TrapezoidalFunction(430, 480, 520, 560), new ContinuousSet(430, 560)), "Glossbrenner-level");
+        Label eliteGlossbrenner = new Label("elite glossbrenner level", new FuzzySet(new TrapezoidalFunction(500, 580, 704, 704), new ContinuousSet(520, 704)), "Glossbrenner-level");
         List<Label> glossbrennerLabels = new ArrayList<>(List.of(begginerGlossbrenner, intermediateGlossbrenner, advancedGlossbrenner, masterGlossbrenner, eliteGlossbrenner));
-        LinguisticVariable glossbrenner = new LinguisticVariable("Glossbrenner-level", glossbrennerLabels, new ContinuousSet(80, 670));
+        LinguisticVariable glossbrenner = new LinguisticVariable("Glossbrenner-level", glossbrennerLabels, new ContinuousSet(80, 704));
 
         //goodlift
-        Label begginerGoodlift = new Label("begginer goodlift level", new FuzzySet(new TrapezoidalFunction(15, 15, 25, 35), new ContinuousSet(15, 35)), "Goodlift-level");
+        Label begginerGoodlift = new Label("begginer goodlift level", new FuzzySet(new TrapezoidalFunction(15, 15, 25, 40), new ContinuousSet(15, 40)), "Goodlift-level");
         Label intermediateGoodlift = new Label("intermediate goodlift level", new FuzzySet(new TrapezoidalFunction(30, 35, 50, 60), new ContinuousSet(30, 60)), "Goodlift-level");
         Label advancedGoodlift = new Label("advanced goodlift level", new FuzzySet(new TrapezoidalFunction(55, 60, 75, 90), new ContinuousSet(55, 90)), "Goodlift-level");
         Label eliteGoodlift = new Label("elite goodlift level", new FuzzySet(new TrapezoidalFunction(75, 100, 120, 120), new ContinuousSet(75, 120)), "Goodlift-level");

@@ -28,6 +28,8 @@ public class FirstFormMultiSubjectSummary implements MultiSubjectSummary {
         double nfSigmaSecondSubjSummarizers = nfSigmaCount(subject2, summarizers);
         double m1 = subject1.size();
         double m2 = subject2.size();
+        System.out.println("Pierwszy podmiot: " + m1 );
+        System.out.println("Drugi podmiot: " + m2 );
 
         return quantifier.getFuzzySet().getMembershipDegree((nfSigmaFirstSubjSummarizers / m1) / ((nfSigmaFirstSubjSummarizers / m1) + (nfSigmaSecondSubjSummarizers / m2)));
     }
