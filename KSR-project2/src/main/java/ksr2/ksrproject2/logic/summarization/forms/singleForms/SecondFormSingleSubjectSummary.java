@@ -32,7 +32,6 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
         System.out.println(measures);
         System.out.println(weights.getWeights());
         double summaryMeasure = measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().get(e.getKey())).sum();
-        System.out.println("main summary measure:" + summaryMeasure);
         return summaryMeasure;
     }
 
@@ -52,12 +51,8 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
 
         double divisionResult = r / m;
         if (Double.isNaN(divisionResult)) {
-            System.out.println("m:" + m);
-            System.out.println("T1: 0.0 (NaN encountered)");
             return 0.0;
         } else {
-            System.out.println("m:" + m);
-            System.out.println("T1:" + quantifier.getFuzzySet().getMembershipDegree(divisionResult));
             return quantifier.getFuzzySet().getMembershipDegree(divisionResult);
         }
     }
@@ -67,7 +62,6 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
         for (Label summarizer : summarizers) {
             multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness(subject.stream().map(c -> fieldForLabel(summarizer, c)).collect(Collectors.toList()));
         }
-        System.out.println("liczba obiektów: " + summarizers.size());
         double res = Math.pow(multiply, 1.0 / summarizers.size());
         return 1.0 - res;
     }
@@ -141,7 +135,6 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
             multiply *= cardinality / subject.size();
         }
         multiply = Math.pow(multiply, 1.0 / summarizers.size());
-        System.out.println("T8:" + (1.0 - multiply));
         return 1.0 - multiply;
     }
 

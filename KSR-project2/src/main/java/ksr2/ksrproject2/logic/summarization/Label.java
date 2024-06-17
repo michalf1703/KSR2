@@ -15,4 +15,5 @@ public class Label {
     public double getMembership(double x) {
         return fuzzySet.getMembershipDegree(x);
     }
-}
+
+    }

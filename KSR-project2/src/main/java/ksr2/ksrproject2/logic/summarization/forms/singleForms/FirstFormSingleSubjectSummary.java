@@ -3,10 +3,7 @@ package ksr2.ksrproject2.logic.summarization.forms.singleForms;
 
 import ksr2.ksrproject2.logic.calculation.sets.FuzzySet;
 import ksr2.ksrproject2.logic.model.PowerliftingResult;
-import ksr2.ksrproject2.logic.summarization.Label;
-import ksr2.ksrproject2.logic.summarization.MeasureWeights;
-import ksr2.ksrproject2.logic.summarization.Quantifier;
-import ksr2.ksrproject2.logic.summarization.AbsoluteQuantifier;
+import ksr2.ksrproject2.logic.summarization.*;
 
 import java.util.List;
 import java.util.Locale;
@@ -30,9 +27,6 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
     @Override
     public double getMainSummaryMeasure() {
         Map<String, Double> measures = calculateMeasures();
-        //System.out.println(measures);
-        //System.out.println(weights.getWeights());
-        System.out.println("main summary measure:" + measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().size()).sum());
         return measures.entrySet().stream().mapToDouble(e -> e.getValue() * weights.getWeights().get(e.getKey())).sum();
     }
     @Override
@@ -46,7 +40,6 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
             m = 1;
         }
         else m = subject.size();
-        System.out.println("T1" + quantifier.getFuzzySet().getMembershipDegree(r / m));
         return quantifier.getFuzzySet().getMembershipDegree(r / m);
     }
 
@@ -58,7 +51,6 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
             multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness(subject.stream().map(c -> fieldForLabel(summarizer, c)).collect(Collectors.toList()));
         }
         double res = Math.pow(multiply, 1.0 / summarizers.size());
-        System.out.println("Liczba obiektów: " + subject.size());
         return 1.0 - res;
     }
 
@@ -74,7 +66,6 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
         if (t == 0) {
             return 0;
         }
-        System.out.println("T3" + (double) t / subject.size());
         return (double) t / subject.size();
     }
 
@@ -90,13 +81,11 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
             }
             multiply *= (r / subject.size());
         }
-        System.out.println("T4" + Math.abs(multiply - getDegreeOfCovering_T3()));
         return Math.abs(multiply - getDegreeOfCovering_T3());
     }
 
     @Override
     public double getDegreeOfSummary_T5() {
-        System.out.println("T5" + 2 * Math.pow(0.5, summarizers.size()));
     return 2 * Math.pow(0.5,summarizers.size());
     }
 
@@ -130,7 +119,6 @@ public class FirstFormSingleSubjectSummary implements SingleSubjectSummary {
             multiply = multiply * (summarizer.getFuzzySet().getCardinality((List<Double>) subject.stream().map(c -> fieldForLabel(summarizer, c)).collect(Collectors.toList())) / subject.size());
         }
         multiply = Math.pow(multiply, 1.0 / summarizers.size());
-        System.out.println("T8" + (1 - multiply));
         return 1.0 - multiply;
     }
 

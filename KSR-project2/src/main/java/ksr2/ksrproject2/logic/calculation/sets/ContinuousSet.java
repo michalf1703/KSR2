@@ -1,9 +1,7 @@
 package ksr2.ksrproject2.logic.calculation.sets;
 
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.ToString;
 
 @Getter
 public class ContinuousSet implements ClassicSet{
@@ -27,12 +25,10 @@ public class ContinuousSet implements ClassicSet{
         return endOfUniverseOFDiscourse - startOfUniverseOFDiscourse;
     }
 
-    //dopełnienie zbioru
     public ContinuousSet complement() {
         return new ContinuousSet(endOfUniverseOFDiscourse, startOfUniverseOFDiscourse);
     }
 
-    //cześć wspólna zbiorów
     public ContinuousSet intersection(ContinuousSet other) {
         if (startOfUniverseOFDiscourse > other.endOfUniverseOFDiscourse || endOfUniverseOFDiscourse < other.startOfUniverseOFDiscourse)
             throw new IllegalArgumentException("Sets do not intersect");
@@ -40,14 +36,11 @@ public class ContinuousSet implements ClassicSet{
                 Math.min(endOfUniverseOFDiscourse, other.endOfUniverseOFDiscourse));
     }
 
-    //suma zbiorów
     public ContinuousSet union(ContinuousSet other) {
         if (startOfUniverseOFDiscourse > other.endOfUniverseOFDiscourse || endOfUniverseOFDiscourse < other.startOfUniverseOFDiscourse)
             throw new IllegalArgumentException("Sets do not intersect");
         return new ContinuousSet(Math.min(startOfUniverseOFDiscourse, other.startOfUniverseOFDiscourse),
                 Math.max(endOfUniverseOFDiscourse, other.endOfUniverseOFDiscourse));
     }
-
-
 
 }

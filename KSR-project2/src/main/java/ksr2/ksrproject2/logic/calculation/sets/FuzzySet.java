@@ -17,8 +17,6 @@ public class FuzzySet {
         return membershipFunction.getValue(x);
     }
 
-    //liczba kardynalna - tak jakby moc zbioru
-    //w przypadku zbioru rozmytego (sigmaCount) - liczy pole pod wykresem, liczy pole wykresu funkcji przynależności
     public double getCardinality() {
         if (universeOfDiscourse instanceof DiscreteSet) {
             return ((DiscreteSet) universeOfDiscourse).getElements()
@@ -30,7 +28,6 @@ public class FuzzySet {
         }
     }
 
-//support - nośnik, zbiór klasyczny wszystkich elementów które spełniają warunek y>0,
     public ClassicSet getSupport() {
         if (universeOfDiscourse instanceof DiscreteSet) {
             List<Double> supportElements = ((DiscreteSet) universeOfDiscourse).getElements()
@@ -45,6 +42,8 @@ public class FuzzySet {
     }
 
     public double getDegreeOfFuzziness(List<Double> databaseValues) {
+        System.out.println("elementy bazy: " + databaseValues.size());
+        System.out.println("licznik: " + getSupport(databaseValues).getSize());
         return getSupport(databaseValues).getSize() / databaseValues.size();
     }
 
@@ -55,8 +54,6 @@ public class FuzzySet {
         return new DiscreteSet(list);
     }
 
-//alfaCut - zbior klasyczny, uogólnienie definicji nośnika , jeśli za alfa przyjmiemy 0 to bedzie nośnik
-//zbiór elementów dla których funkcja przynależności jest miX > alfa
     public ClassicSet getAlphaCut(double alpha) {
         ClassicSet support = getSupport();
         if (support instanceof DiscreteSet) {
@@ -70,8 +67,6 @@ public class FuzzySet {
         }
     }
 
-    //stopień rozmytości - określa jak bardzo zbiór jest rozmyty w kontekście swojego uniwersum,
-    //stopień rozmytości potrzebny do T2 (stopień rozmycia)
     public double getDegreeOfFuzziness() {
 
         return getSupport().getSize() / universeOfDiscourse.getSize();
@@ -92,18 +87,11 @@ public class FuzzySet {
       //  return new FuzzySet(x -> Math.min(membershipFunction.getValue(x), otherSet.membershipFunction.getValue(x)), universeOfDiscourse);
     }
 
-//miało być sprawdzenie czy jest pusty
     public boolean isEmpty() {
         return getSupport().isEmpty();
     }
 
-    public double getDegreeOfFuzziness(Double aDouble) {
-        return getMembershipDegree(aDouble);
-    }
 
-    public double getCardinality(Double aDouble) {
-        return getMembershipDegree(aDouble);
-    }
     public double getCardinality(List<Double> databaseValues) {
         return databaseValues.stream()
                 .mapToDouble(this::getMembershipDegree)

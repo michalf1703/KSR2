@@ -27,7 +27,6 @@ public class DiscreteSet implements ClassicSet {
         return elements.size();
     }
 
-    // Dopełnienie zbioru dyskretnego
     public DiscreteSet complement(double startOfUniverseOFDiscourse, double endOfUniverseOFDiscourse) {
         if (startOfUniverseOFDiscourse > endOfUniverseOFDiscourse)
             throw new IllegalArgumentException("Start of universe of discourse must be less than end of universe of discourse");
@@ -40,7 +39,6 @@ public class DiscreteSet implements ClassicSet {
         return new DiscreteSet(complementElements);
     }
 
-    // Suma zbiorów dyskretnych
     public DiscreteSet union(DiscreteSet otherSet) {
         List<Double> unionElements = new ArrayList<>(elements);
         for (double element : otherSet.getElements()) {
@@ -51,7 +49,6 @@ public class DiscreteSet implements ClassicSet {
         return new DiscreteSet(unionElements);
     }
 
-    // Część wspólna zbiorów dyskretnych
     public DiscreteSet intersection(DiscreteSet otherSet) {
         List<Double> intersectionElements = new ArrayList<>();
         for (double element : elements) {
