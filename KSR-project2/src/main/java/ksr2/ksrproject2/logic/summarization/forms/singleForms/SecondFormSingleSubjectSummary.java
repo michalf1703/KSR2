@@ -5,6 +5,7 @@ import ksr2.ksrproject2.logic.calculation.sets.FuzzySet;
 import ksr2.ksrproject2.logic.model.PowerliftingResult;
 import ksr2.ksrproject2.logic.summarization.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -59,8 +60,17 @@ public class SecondFormSingleSubjectSummary implements SingleSubjectSummary {
 
     public double getDegreeOfImprecision_T2() {
         double multiply = 1.0;
+        double m = 0.0;
+        List<PowerliftingResult> filteredSubject = new ArrayList<>();
+        for (PowerliftingResult result : subject) {
+            double intersectedQualifiers = and(qualifiers, result);
+            if (intersectedQualifiers > 0) {
+                filteredSubject.add(result);
+               // m += intersectedQualifiers;
+            }
+        }
         for (Label summarizer : summarizers) {
-            multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness(subject.stream().map(c -> fieldForLabel(summarizer, c)).collect(Collectors.toList()));
+            multiply = multiply * summarizer.getFuzzySet().getDegreeOfFuzziness(filteredSubject.stream().map(c -> fieldForLabel(summarizer, c)).collect(Collectors.toList()));
         }
         double res = Math.pow(multiply, 1.0 / summarizers.size());
         return 1.0 - res;
